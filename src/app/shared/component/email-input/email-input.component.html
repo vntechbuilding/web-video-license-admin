@@ -1,0 +1,9 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24"  [nzRequired]="formErrorMsg['email'] && formErrorMsg['email']['required']" nzFor="email">Email</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['email']">
+      <input nz-input formControlName="email" id="email" />
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

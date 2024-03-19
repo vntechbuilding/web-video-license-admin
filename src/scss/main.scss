@@ -1,0 +1,110 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ck-editor__editable_inline {
+  min-height: 300px;
+}
+@for $i from 1 through 5{
+  .mt#{$i}{
+    margin-top: #{$i}rem;
+  }
+  .mb#{$i}{
+    margin-bottom: #{$i}rem;
+  }
+  .ml#{$i}{
+    margin-left: #{$i}rem;
+  }
+  .mr#{$i}{
+    margin-right: #{$i}rem;
+  }
+  .pl#{$i}{
+    padding-left: #{$i}rem;
+  }
+  .pr#{$i}{
+    padding-right: #{$i}rem;
+  }
+  .pt#{$i}{
+    padding-top: #{$i}rem;
+  }
+  .pb#{$i}{
+    padding-bottom: #{$i}rem;
+  }
+
+}
+.text-right{
+  text-align: right;
+}
+.text-center{
+  text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+.text-justify{
+  text-align: justify;
+}
+.text-uppercase{
+  text-transform: uppercase;
+}
+.text-lowercase{
+  text-transform: lowercase;
+}
+.text-capitalize{
+  text-transform: capitalize;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-italic{
+  font-style: italic;
+}
+.text-underline{
+  text-decoration: underline;
+}
+.text-overline{
+  text-decoration: overline;
+}
+.text-line-through{
+  text-decoration: line-through;
+}
+.text-none{
+  text-decoration: none;
+}
+.text-nowrap{
+  white-space: nowrap;
+}
+.text-break{
+  word-break: break-all;
+}
+.text-truncate{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-clip{
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+.text-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-ellipsis-word{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+.text-ellipsis-char{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+.text-ellipsis-line{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}

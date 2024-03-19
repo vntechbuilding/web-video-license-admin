@@ -1,0 +1,23 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+  <app-username-password-confirm [defaultValue]="defaultValue" [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-username-password-confirm>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="accountName">Tên tài khoản</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['accountName']">
+      <input nz-input formControlName="accountName" id="accountName" />
+    </nz-form-control>
+  </nz-form-item>
+  <app-fullname-phone-email-input [defaultValue]="defaultValue" [validators]="validators" [(formErrorMsg)]="formErrorMsg"  [formGroup]="validateForm" [formErrors]="formErrors"></app-fullname-phone-email-input>
+
+
+  <app-disabled-input  [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-disabled-input>
+
+
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Đăng ký tài khoản</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,0 +1,44 @@
+<ng-container *ngIf="admin$ | async as adminData">
+  <nz-table #adminTable nzSize="small" [nzData]="adminData.admin" nzShowPagination="true" [nzTotal]="totalAdmin" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+  <thead>
+  <tr>
+
+    <th>Ngày khởi tạo</th>
+    <th>Tài khoản</th>
+    <th>Disabled</th>
+    <th>Xử lý
+    </th>
+  </tr>
+  <tr>
+    <th colspan="11" class="center-align">
+      <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo tài khoản">
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of adminTable.data">
+    <td>{{ data.createdAt | date:"short" }}</td>
+
+    <td>{{ data.username }}</td>
+    <td>
+      <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>
+    </td>
+    <td class="btn-float">
+
+      <button nz-button nzType="primary" class="mr1" (click)="changePassword(data)" nz-tooltip nzTooltipTitle="Đổi mật khẩu admin">
+        <span nz-icon nzType="key" nzTheme="outline"></span>
+      </button>
+<!--      <button nz-button nzDanger nzType="primary" nz-popconfirm-->
+<!--              nzPopconfirmTitle="Are you sure delete this task?"-->
+<!--              nzPopconfirmPlacement="bottom"-->
+<!--              (nzOnConfirm)="delete(data)" nz-tooltip nzTooltipTitle="Xoá tài khoản admin">-->
+<!--        <span nz-icon nzType="delete" nzTheme="outline"></span>-->
+<!--      </button>-->
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+</ng-container>

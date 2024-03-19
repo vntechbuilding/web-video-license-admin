@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24"  [nzRequired]="formErrorMsg['phone']&&formErrorMsg['phone']['required']" nzFor="phone">SĐT</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['phone']">
+      <input nz-input formControlName="phone" id="phone" />
+    </nz-form-control>
+  </nz-form-item>
+</div>

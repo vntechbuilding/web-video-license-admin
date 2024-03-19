@@ -1,0 +1,50 @@
+<ng-container *ngIf="validateForm">
+
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+  >
+    <label class="custom-label" for="username">Username</label>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="errors.username">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            id="username"
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Username"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <label class="custom-label" for="password">Password</label>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="errors.password">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            id="password"
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div class="text-center">
+      <button
+        nz-button
+        type="submit"
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Login
+      </button>
+    </div>
+
+  </form>
+
+</ng-container>

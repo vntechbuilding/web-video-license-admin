@@ -1,0 +1,36 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="user">Username</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['username']">
+      <input nz-input formControlName="username" id="username" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['password']">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        formControlName="password"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="passwordConfirm" nzRequired>Confirm Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['passwordConfirm']">
+      <input nz-input type="password" formControlName="passwordConfirm" id="passwordConfirm" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="disabled" nzRequired>Khoá tài khoản</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['disabled']">
+      <nz-switch nzSize="small" formControlName="disabled"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Đăng ký tài khoản</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

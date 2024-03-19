@@ -1,0 +1,10 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['fullName']&&formErrorMsg['fullName']['required']" nzFor="fullName">Họ tên</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['fullName']">
+      <input nz-input formControlName="fullName" id="fullName" />
+    </nz-form-control>
+  </nz-form-item>
+
+
+</div>

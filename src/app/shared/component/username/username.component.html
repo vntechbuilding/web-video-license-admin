@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="user">Username</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['username']">
+      <input nz-input formControlName="username" id="username" />
+    </nz-form-control>
+  </nz-form-item>
+</div>

@@ -1,0 +1,8 @@
+.btn-float{
+  > *{
+    margin-right: .3rem;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}

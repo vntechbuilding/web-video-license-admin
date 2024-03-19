@@ -1,0 +1,11 @@
+.list-regex {
+  padding-bottom: 1.5rem;
+}
+.list-regex > * {
+  float: left;
+}
+.list-regex::after {
+  display: block;
+  content: " ";
+  clear: both;
+}
