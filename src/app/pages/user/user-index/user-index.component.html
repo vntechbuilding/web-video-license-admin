@@ -4,12 +4,9 @@
     <tr>
 
       <th>Ngày khởi tạo</th>
-      <th>Tài khoản</th>
       <th>Chủ khoản</th>
-      <th>Tên nhân vật</th>
       <th>SĐT</th>
       <th>Email</th>
-      <th>Số dư</th>
       <th>Disabled</th>
       <th>Xử lý
       </th>
@@ -26,35 +23,23 @@
     <tr *ngFor="let data of userTable.data">
       <td>{{ data.createdAt | date:"short" }}</td>
 
-      <td>{{ data.username }}</td>
       <td>{{ data.fullName }}</td>
-      <td>{{ data.accountName }}</td>
       <td>{{ data.phone }}</td>
       <td>{{ data.email }}</td>
-      <td>{{ data.balance | number:'1.0-2' }}</td>
       <td>
         <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>
       </td>
       <td class="btn-float">
 
-        <button nz-button nzType="primary" (click)="changePassword(data)" nz-tooltip nzTooltipTitle="Đổi mật khẩu người chơi">
+        <button nz-button nzType="primary" (click)="changePassword(data)" nz-tooltip nzTooltipTitle="Đổi mật khẩu người dùng">
           <span nz-icon nzType="key" nzTheme="outline"></span>
         </button>
-        <button nz-button nzType="primary" (click)="deposit(data)" nz-tooltip nzTooltipTitle="Nạp tiền tài khoản">
-          <span nz-icon nzType="bank" nzTheme="outline"></span>
-        </button>
-        <button nz-button nzType="primary" (click)="transactionHistory(data)" nz-tooltip nzTooltipTitle="Lịch sử giao dịch tài khoản">
-          <span nz-icon nzType="history" nzTheme="outline"></span>
-        </button>
 
-        <button nz-button nzDanger nzType="primary" (click)="withdraw(data)" nz-tooltip nzTooltipTitle="Rút tiền tài khoản">
-          <span nz-icon nzType="dollar" nzTheme="outline"></span>
-        </button>
 
 <!--        <button nz-button nzDanger nzType="primary" nz-popconfirm-->
 <!--                nzPopconfirmTitle="Are you sure delete this task?"-->
 <!--                nzPopconfirmPlacement="bottom"-->
-<!--                (nzOnConfirm)="delete(data)" nz-tooltip nzTooltipTitle="Xoá tài khoản người chơi">-->
+<!--                (nzOnConfirm)="delete(data)" nz-tooltip nzTooltipTitle="Xoá tài khoản người dùng">-->
 <!--          <span nz-icon nzType="delete" nzTheme="outline"></span>-->
 <!--        </button>-->
       </td>

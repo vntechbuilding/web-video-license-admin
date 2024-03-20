@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 export declare type user = {
   id: string;
-  username: string;
+  // username: string;
   fullName: string;
-  accountName: string;
+  // accountName: string;
   email: string;
   phone: string;
   balance: number;

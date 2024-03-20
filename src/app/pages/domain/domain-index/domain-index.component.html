@@ -1,0 +1,35 @@
+<ng-container *ngIf="domains$ | async as domainData">
+
+  <nz-table #domainTable nzSize="small" [nzData]="domainData.data" nzShowPagination="true" [nzTotal]="domainData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+    <thead>
+    <tr>
+
+      <th>Thời gian khởi tạo</th>
+      <th>Domain</th>
+      <th>User</th>
+      <th>Disabled</th>
+      <th>Xử lý</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="center-align">
+        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo domain">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </button>
+      </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of domainTable.data">
+      <td>{{data.createdAt | date:'dd/MM/yyyy'}}</td>
+      <td>{{data.domain}}</td>
+      <td>{{data.user?.fullName}}</td>
+      <td>
+        <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>
+      </td>
+      <td>
+        <button nz-button nzType="primary" nzSize="small" (click)="editDomain(data)">Sửa</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</ng-container>

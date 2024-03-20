@@ -26,7 +26,6 @@ import { userCreate, UserService } from '../../user/user.service';
     NzInputModule,
     NzSwitchModule,
     PasswordConfirmComponent,
-    UsernamePasswordConfirmComponent,
     FullnamePhoneEmailInputComponent,
     DisabledInputComponent,
     CommonModule,
@@ -43,23 +42,14 @@ export class UserCreateComponent
   }
 
   ngOnInit() {
-    this.validateForm = this.fb.group({
-      accountName: [
-        '',
-        {
-          required: 'Account name is not valid',
-        },
-      ],
-    });
+    this.validateForm = this.fb.group({});
     //Đăng ký thay đổi giá trị của form và check validation
     // this.formValidationSub();
   }
   override defaultValue: Partial<userCreate> = {
-    username: 'test',
     disabled: false,
   };
   override validators = {
-    username: [Validators.minLength(4), Validators.maxLength(20)],
     fullName: [Validators.required],
     email: [Validators.required],
   };

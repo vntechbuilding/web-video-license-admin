@@ -69,7 +69,7 @@ export class AuthApiService {
   resetToken(refreshToken: string, token: string) {
     return this.http.get<authUserData>(environment.apiUrl + 'auth', {
       headers: {
-        Authorization: `Bearer ${refreshToken}`,
+        Authorization: `${refreshToken}`,
         token: token,
       },
     });

@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   forwardRef,
+  Input,
   OnInit,
 } from '@angular/core';
 import {
   FormControl,
+  FormGroup,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -32,6 +34,8 @@ export class DisabledInputComponent
   extends InputComponentBase
   implements OnInit
 {
+  @Input({ required: false }) public label: string = 'Khoá tài khoản';
+  //Khoá tài khoản
   ngOnInit() {
     this.addControl('disabled', this.validators['disabled']);
   }

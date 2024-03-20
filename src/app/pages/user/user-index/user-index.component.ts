@@ -12,9 +12,6 @@ import {
 import { user, UserService } from '../../user/user.service';
 import { UserCreateComponent } from '../../user/user-create/user-create.component';
 import { UserChangePasswordComponent } from '../../user/user-change-password/user-change-password.component';
-import { UserDepositComponent } from '../../user/user-deposit/user-deposit.component';
-import { UserWithdrawComponent } from '../../user/user-withdraw/user-withdraw.component';
-import { UserTransactionHistoryComponent } from '../../user/user-transaction-history/user-transaction-history.component';
 import { CommonModule } from '@angular/common';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
@@ -88,7 +85,7 @@ export class UserIndexComponent
   create() {
     const modal = this.createComponentModal<UserCreateComponent, {}>(
       {
-        nzTitle: 'Tạo tài khoản người chơi',
+        nzTitle: 'Tạo tài khoản người dùng',
       },
       UserCreateComponent
     );
@@ -112,47 +109,9 @@ export class UserIndexComponent
   changePassword(data: user) {
     this.createComponentModal(
       {
-        nzTitle: 'Đổi mật khẩu tài khoản  người chơi ' + data.username,
+        nzTitle: 'Đổi mật khẩu tài khoản  người dùng ' + data.fullName,
       },
       UserChangePasswordComponent,
-      data
-    );
-  }
-
-  depositSubscription$!: Subscription;
-  deposit(data: user) {
-    const modal = this.createComponentModal(
-      {
-        nzTitle: 'Nạp tiền tài khoản  người chơi ' + data.username,
-      },
-      UserDepositComponent,
-      data
-    );
-    this.depositSubscription$ = modal.afterClose.subscribe((data) => {
-      this.userLoad$.next(true);
-    });
-  }
-
-  withdraw(data: user) {
-    const modal = this.createComponentModal(
-      {
-        nzTitle: 'Rút tiền tài khoản  người chơi ' + data.username,
-      },
-      UserWithdrawComponent,
-      data
-    );
-    this.depositSubscription$ = modal.afterClose.subscribe((data) => {
-      this.userLoad$.next(true);
-    });
-  }
-
-  transactionHistory(data: user) {
-    this.createComponentModal(
-      {
-        nzTitle: 'Lịch sử giao dịch tài khoản người chơi ' + data.username,
-        nzWidth: '100vw',
-      },
-      UserTransactionHistoryComponent,
       data
     );
   }

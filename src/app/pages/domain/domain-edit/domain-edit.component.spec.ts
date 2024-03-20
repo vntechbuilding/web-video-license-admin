@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserDepositComponent } from './user-deposit.component';
+import { DomainEditComponent } from './domain-edit.component';
 
-describe('UserDepositComponent', () => {
-  let component: UserDepositComponent;
-  let fixture: ComponentFixture<UserDepositComponent>;
+describe('DomainEditComponent', () => {
+  let component: DomainEditComponent;
+  let fixture: ComponentFixture<DomainEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserDepositComponent]
+      imports: [DomainEditComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserDepositComponent);
+    fixture = TestBed.createComponent(DomainEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

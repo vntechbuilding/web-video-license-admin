@@ -17,6 +17,13 @@ export const PagesRoutes: Route[] = [
           ),
       },
       {
+        path: 'domain',
+        loadComponent: () =>
+          import('./domain/domain-index/domain-index.component').then(
+            (m) => m.DomainIndexComponent
+          ),
+      },
+      {
         path: 'go-login-api',
         loadComponent: () =>
           import('./go-login/go-login-api/go-login-api.component').then(

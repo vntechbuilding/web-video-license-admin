@@ -6,6 +6,8 @@ export abstract class ModalContentBase<T> {
   public readonly nzModalData: T = inject(NZ_MODAL_DATA);
 
   destroyModal(destroyData: any): void {
-    this.modal.destroy(destroyData);
+    // console.log(destroyData);
+    this.modal.close(destroyData);
+    // this.modal.triggerOk().then();
   }
 }

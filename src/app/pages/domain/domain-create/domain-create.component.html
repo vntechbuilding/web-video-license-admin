@@ -1,0 +1,27 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="domain">Domain</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['domain']">
+      <input nz-input formControlName="domain" id="domain" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">
+      <nz-select formControlName="userId" nzShowSearch>
+        <ng-container *ngIf="user$ | async; let user">
+          <nz-option *ngFor="let userItem of user.data" [nzValue]="userItem.id" [nzLabel]="userItem.fullName + ' ' + userItem.email + ' ' + userItem.phone"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <app-disabled-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Khóa domain"></app-disabled-input>
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Tạo Domain</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

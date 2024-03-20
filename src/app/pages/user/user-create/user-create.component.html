@@ -1,12 +1,7 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
 
-  <app-username-password-confirm [defaultValue]="defaultValue" [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-username-password-confirm>
-  <nz-form-item>
-    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="accountName">Tên tài khoản</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['accountName']">
-      <input nz-input formControlName="accountName" id="accountName" />
-    </nz-form-control>
-  </nz-form-item>
+  <app-password-confirm  [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-password-confirm>
+
   <app-fullname-phone-email-input [defaultValue]="defaultValue" [validators]="validators" [(formErrorMsg)]="formErrorMsg"  [formGroup]="validateForm" [formErrors]="formErrors"></app-fullname-phone-email-input>
 
 

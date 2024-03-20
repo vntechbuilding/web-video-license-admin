@@ -1,6 +1,6 @@
 <div [formGroup]="formGroup">
   <nz-form-item>
-    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="disabled">Khoá tài khoản</nz-form-label>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="disabled">{{label}}</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['disabled']">
       <nz-switch nzSize="small" formControlName="disabled"></nz-switch>
     </nz-form-control>

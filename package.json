@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "upgradeCkeditor": "yarn remove github:vntechbuilding/custom-ckeditor && yarn add github:vntechbuilding/custom-ckeditor"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +20,13 @@
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
     "@ckeditor/ckeditor5-angular": "^7.0.1",
+    "@ckeditor/ckeditor5-core": "^41.2.1",
+    "@ckeditor/ckeditor5-engine": "^41.2.1",
+    "@ckeditor/ckeditor5-utils": "^41.2.1",
     "@ckeditor/ckeditor5-watchdog": "^41.2.1",
+    "@vntechbuilding/custom-ckeditor": "0.0.6",
     "bootstrap": "^5.3.3",
+    "lodash": "^4.17.21",
     "ng-zorro-antd": "^17.3.0",
     "ngx-webstorage": "^13.0.1",
     "rxjs": "~7.8.0",
@@ -33,6 +39,7 @@
     "@angular/cli": "^17.1.1",
     "@angular/compiler-cli": "^17.1.0",
     "@types/jasmine": "~5.1.0",
+    "@types/lodash": "^4.17.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
