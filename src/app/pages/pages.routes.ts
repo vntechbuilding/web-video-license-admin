@@ -24,13 +24,6 @@ export const PagesRoutes: Route[] = [
           ),
       },
       {
-        path: 'go-login-api',
-        loadComponent: () =>
-          import('./go-login/go-login-api/go-login-api.component').then(
-            (c) => c.GoLoginApiComponent
-          ),
-      },
-      {
         path: 'admin',
         loadComponent: () =>
           import('./admin/admin-index/admin-index.component').then(
@@ -45,11 +38,11 @@ export const PagesRoutes: Route[] = [
           ),
       },
       {
-        path: 'go-login-profiles',
+        path: 'news-category',
         loadComponent: () =>
           import(
-            './go-login/go-login-profiles/go-login-profiles.component'
-          ).then((c) => c.GoLoginProfilesComponent),
+            './news-category/news-category-index/news-category-index.component'
+          ).then((c) => c.NewsCategoryIndexComponent),
       },
     ],
   },

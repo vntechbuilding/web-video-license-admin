@@ -1,0 +1,50 @@
+<ng-container *ngIf="category$ | async as categoryData">
+
+  <div class="text-center mb2">
+    <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo domain">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
+  <nz-tree-view [nzTreeControl]="treeControl" [nzDataSource]="dataSource">
+    <nz-tree-node *nzTreeNodeDef="let node" nzTreeNodeIndentLine>
+      <nz-tree-node-toggle nzTreeNodeNoopToggle >
+        <span nz-icon nzType="file" nzTheme="outline"></span>
+      </nz-tree-node-toggle>
+      <nz-tree-node-option *ngTemplateOutlet="nodeOption; context: {newsCategory: node}">
+      </nz-tree-node-option>
+    </nz-tree-node>
+
+    <nz-tree-node *nzTreeNodeDef="let node; when: hasChild" nzTreeNodeIndentLine>
+      <nz-tree-node-toggle>
+          <span
+            nz-icon
+            [nzType]="treeControl.isExpanded(node) ? 'minus-square' : 'plus-square'"
+            nzTheme="outline"
+          ></span>
+      </nz-tree-node-toggle>
+      <nz-tree-node-option *ngTemplateOutlet="nodeOption; context: {newsCategory: node}">
+      </nz-tree-node-option>
+    </nz-tree-node>
+  </nz-tree-view>
+
+</ng-container>
+<ng-template #nodeOption let-newsCategory="newsCategory">
+  {{newsCategory.name}}
+  &nbsp; - &nbsp;
+  ID: {{newsCategory.id}}
+  &nbsp; - &nbsp;
+  Left: {{newsCategory.left}}
+  &nbsp; - &nbsp;
+  Right: {{newsCategory.right}}
+  &nbsp; - &nbsp;
+  Root: {{newsCategory.rootId}}
+  &nbsp; - &nbsp;
+
+  <nz-switch [ngModel]="newsCategory.disabled" nzSize="small" (ngModelChange)="changeDisabled(newsCategory, !newsCategory.disabled)"></nz-switch>
+  &nbsp; - &nbsp;
+  <a href="{{newsCategory.domain.domain}}" target="_blank" title="{{newsCategory.description}}">
+    {{newsCategory.domain.domain}}/{{newsCategory.url}}
+  </a>
+  &nbsp; - &nbsp;
+  <button nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(newsCategory)">Xóa thư mục</button>
+    </ng-template>

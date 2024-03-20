@@ -13,16 +13,11 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
 
-      <li nz-submenu nzOpen nzTitle="GoLogin" nzIcon="chrome">
+      <li nz-submenu nzOpen nzTitle="Tin tức" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/go-login-api']">
-              API KEY
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/go-login-profiles']">
-              Profiles
+            <a [routerLink]="['/news-category']">
+              Danh mục
             </a>
           </li>
         </ul>

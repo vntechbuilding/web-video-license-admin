@@ -26,6 +26,12 @@ export class DomainService {
     );
   }
 
+  allUserDomain(userId: string) {
+    return this.http.get<domain[]>(
+      environment.apiUrl + `domain/user/${userId}`
+    );
+  }
+
   createDomain(createData: any) {
     return this.http.post<domain>(environment.apiUrl + `domain`, createData);
   }

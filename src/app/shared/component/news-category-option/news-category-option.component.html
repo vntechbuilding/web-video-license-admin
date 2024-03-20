@@ -1,0 +1,5 @@
+{{categoryItem | json}}
+<nz-option *ngIf="categoryItem" [nzValue]="categoryItem.id" [nzLabel]="getIndentedName(categoryItem)">
+</nz-option>
+
+<app-news-category-option *ngFor="let child of categoryItem.children" [categoryItem]="child" [level]="level + 1"></app-news-category-option>

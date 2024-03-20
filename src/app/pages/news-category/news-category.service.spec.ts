@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GoLoginApiService } from './go-login-api.service';
+import { NewsCategoryService } from './news-category.service';
 
-describe('GoLoginApiService', () => {
-  let service: GoLoginApiService;
+describe('NewsCategoryService', () => {
+  let service: NewsCategoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GoLoginApiService);
+    service = TestBed.inject(NewsCategoryService);
   });
 
   it('should be created', () => {
