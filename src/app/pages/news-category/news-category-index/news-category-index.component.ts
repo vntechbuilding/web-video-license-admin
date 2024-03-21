@@ -20,6 +20,7 @@ import { domain } from '../../domain/domain.service';
 import { DomainCreateComponent } from '../../domain/domain-create/domain-create.component';
 import { NewsCategoryCreateComponent } from '../news-category-create/news-category-create.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NewsCategoryEditComponent } from '../news-category-edit/news-category-edit.component';
 interface FlatNode {
   expandable: boolean;
   name: string;
@@ -68,7 +69,7 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
   private transformer = (node: NewsCategory, level: number): FlatNode => ({
     ...node,
     expandable: !!node.children && node.children.length > 0,
-    name: node.name,
+    name: node.title,
     level,
   });
 
@@ -116,5 +117,21 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
       .subscribe(() => {
         this.loadDataSubject$.next(true);
       });
+  }
+
+  update(newsCategory: NewsCategory) {
+    const modal = this.createComponentModal<
+      NewsCategoryEditComponent,
+      NewsCategory
+    >(
+      {
+        nzTitle: 'Cập nhật danh mục ' + newsCategory.title,
+      },
+      NewsCategoryEditComponent,
+      newsCategory
+    );
+    modal.afterClose.subscribe(() => {
+      this.loadDataSubject$.next(true);
+    });
   }
 }

@@ -18,6 +18,6 @@ export class NewsCategoryOptionComponent implements OnInit {
   }
 
   getIndentedName(categoryItem: NewsCategory): string {
-    return ' '.repeat(this.level * 2) + categoryItem.name; // Indent name by level
+    return ' '.repeat(this.level * 2) + categoryItem.title; // Indent name by level
   }
 }

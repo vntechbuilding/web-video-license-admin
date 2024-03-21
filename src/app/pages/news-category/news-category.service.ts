@@ -4,11 +4,10 @@ import { environment } from '../../../environments/environment';
 import { domain } from '../domain/domain.service';
 export declare type NewsCategory = {
   id: string;
-  code: string | null;
   description: string | null;
   summary: string | null;
   image: string | null;
-  name: string;
+  title: string;
   createdAt: Date;
   disabled: boolean;
   domainId: string;
@@ -40,6 +39,13 @@ export class NewsCategoryService {
     return this.http.post<NewsCategory>(
       environment.apiUrl + `news-category`,
       createData
+    );
+  }
+
+  updateCategory(updateData: any) {
+    return this.http.put<NewsCategory>(
+      environment.apiUrl + `news-category`,
+      updateData
     );
   }
 

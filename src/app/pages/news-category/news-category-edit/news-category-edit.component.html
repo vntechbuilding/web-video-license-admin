@@ -41,7 +41,7 @@
       <nz-select formControlName="parentId" nzShowSearch nzAllowClear>
         <ng-container *ngIf="category$ | async; let category">
 
-                    <nz-option *ngFor="let categoryItem of category" [nzValue]="categoryItem.id" [nzLabel]="categoryItem.title"></nz-option>
+          <nz-option *ngFor="let categoryItem of category" [nzValue]="categoryItem.id" [nzLabel]="categoryItem.title"></nz-option>
 
         </ng-container>
       </nz-select>
@@ -54,7 +54,7 @@
 
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="12" [nzOffset]="8">
-      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Tạo danh mục</button>
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật danh mục</button>
     </nz-form-control>
   </nz-form-item>
 </form>

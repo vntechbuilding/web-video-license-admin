@@ -11,18 +11,18 @@ import {
 import { DisabledInputComponent } from '../../../shared/component/disabled-input/disabled-input.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CommonModule } from '@angular/common';
+import { NewsCategoryOptionComponent } from '../../../shared/component/news-category-option/news-category-option.component';
 import { Mixin } from 'ts-mixer';
 import { FormBase } from '../../../shared/base/form-base';
 import { ModalContentBase } from '../../../shared/base/modal-content-base';
 import { UserService } from '../../user/user.service';
 import { NewsCategory, NewsCategoryService } from '../news-category.service';
-import { map, of, Subject, Subscription, switchMap } from 'rxjs';
 import { DomainService } from '../../domain/domain.service';
-import { NewsCategoryOptionComponent } from '../../../shared/component/news-category-option/news-category-option.component';
+import { map, of, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { FlattenCategories } from '../../../shared/utils/flatten-categories';
 
 @Component({
-  selector: 'app-news-category-create',
+  selector: 'app-news-category-edit',
   standalone: true,
   imports: [
     NzFormModule,
@@ -35,11 +35,11 @@ import { FlattenCategories } from '../../../shared/utils/flatten-categories';
     CommonModule,
     NewsCategoryOptionComponent,
   ],
-  templateUrl: './news-category-create.component.html',
-  styleUrl: './news-category-create.component.scss',
+  templateUrl: './news-category-edit.component.html',
+  styleUrl: './news-category-edit.component.scss',
 })
-export class NewsCategoryCreateComponent
-  extends Mixin(FormBase, ModalContentBase)
+export class NewsCategoryEditComponent
+  extends Mixin(FormBase, ModalContentBase<NewsCategory>)
   implements OnInit, OnDestroy
 {
   constructor(
@@ -49,19 +49,29 @@ export class NewsCategoryCreateComponent
   ) {
     super();
   }
-  user$ = this.user.getAllUser(1000);
+  user$ = this.user
+    .getAllUser(1000)
+    .pipe(
+      tap(() => this.loadDomain$.next(this.nzModalData.domain?.userId || ''))
+    );
   loadDomain$ = new Subject<string>();
-  domain$ = this.loadDomain$.pipe(
-    switchMap((userId) => {
-      if (!userId) return of([]);
-      return this.domain.allUserDomain(userId);
-    })
-  );
+  domain$ = this.loadDomain$
+    .pipe(
+      switchMap((userId) => {
+        if (!userId) {
+          this.validateForm.get('domainId')?.setValue('');
+          return of([]);
+        }
+        return this.domain.allUserDomain(userId);
+      })
+    )
+    .pipe(tap(() => this.loadCategory$.next(this.nzModalData.domainId || '')));
 
   loadCategory$ = new Subject<string>();
   category$ = this.loadCategory$.pipe(
     switchMap((domainId) => {
       if (!domainId) {
+        this.validateForm.get('parentId')?.setValue('');
         return of([]);
       } else
         return this.newsCategory
@@ -74,11 +84,11 @@ export class NewsCategoryCreateComponent
   domainSub!: Subscription;
   ngOnInit() {
     this.validateForm = this.fb.group({
-      domainId: ['', [Validators.required]],
-      userId: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      title: ['', [Validators.required]],
-      parentId: [''],
+      domainId: [this.nzModalData.domainId, [Validators.required]],
+      userId: [this.nzModalData.domain?.userId, [Validators.required]],
+      description: [this.nzModalData.description, [Validators.required]],
+      title: [this.nzModalData.title, [Validators.required]],
+      parentId: [this.nzModalData.parentId],
     });
     this.domainSub = (
       this.validateForm.get('domainId') as AbstractControl
@@ -115,7 +125,12 @@ export class NewsCategoryCreateComponent
   submitForm() {
     if (this.formValid()) {
       this.newsCategory
-        .createCategory(this.removeBlankString(this.validateForm.value) as any)
+        .updateCategory(
+          this.removeBlankString({
+            ...this.validateForm.value,
+            categoryId: this.nzModalData.id,
+          }) as any
+        )
         .pipe(this.httpErrorOperator('domain'))
         .subscribe((data) => {
           this.destroyModal(data);

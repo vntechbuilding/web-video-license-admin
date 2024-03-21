@@ -46,5 +46,7 @@
     {{newsCategory.domain.domain}}/{{newsCategory.url}}
   </a>
   &nbsp; - &nbsp;
+  <button nz-button nzType="primary"  nzSize="small" (click)="update(newsCategory)">Cập nhật</button>
+  &nbsp; - &nbsp;
   <button nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(newsCategory)">Xóa thư mục</button>
     </ng-template>
