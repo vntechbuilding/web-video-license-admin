@@ -1,0 +1,39 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="name">Publisher</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['name']">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="description">Description</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['description']">
+      <input nz-input formControlName="description" id="description" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="url">Url</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['url']">
+      <input nz-input formControlName="url" id="url" />
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">
+      <nz-select formControlName="userId" nzShowSearch>
+        <ng-container *ngIf="user$ | async; let user">
+          <nz-option *ngFor="let userItem of user.data" [nzValue]="userItem.id" [nzLabel]="userItem.fullName + ' ' + userItem.email + ' ' + userItem.phone"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Tạo Publisher</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

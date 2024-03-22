@@ -44,6 +44,20 @@ export const PagesRoutes: Route[] = [
             './news-category/news-category-index/news-category-index.component'
           ).then((c) => c.NewsCategoryIndexComponent),
       },
+      {
+        path: 'author',
+        loadComponent: () =>
+          import('./author/author-index/author-index.component').then(
+            (m) => m.AuthorIndexComponent
+          ),
+      },
+      {
+        path: 'publisher',
+        loadComponent: () =>
+          import('./publisher/publisher-index/publisher-index.component').then(
+            (m) => m.PublisherIndexComponent
+          ),
+      },
     ],
   },
   {

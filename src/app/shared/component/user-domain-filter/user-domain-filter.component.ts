@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -38,6 +39,7 @@ export class UserDomainFilterComponent
   implements OnInit, OnDestroy
 {
   @Output() filter = new EventEmitter<UserDomainFilter>();
+  @Input('domainInput') public domainInput: boolean = true;
   constructor(private user: UserService, private domain: DomainService) {
     super();
   }

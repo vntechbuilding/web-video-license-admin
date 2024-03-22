@@ -11,8 +11,7 @@ import { CommonModule } from '@angular/common';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { FormsModule } from '@angular/forms';
 import { omit } from 'lodash';
-import { NzIconDirective } from 'ng-zorro-antd/icon';
-import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-domain-index',
@@ -23,8 +22,7 @@ import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
     CommonModule,
     NzSwitchModule,
     FormsModule,
-    NzIconDirective,
-    NzTooltipDirective,
+    NzToolTipModule,
   ],
   templateUrl: './domain-index.component.html',
   styleUrl: './domain-index.component.scss',

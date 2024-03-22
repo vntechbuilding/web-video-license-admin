@@ -165,9 +165,9 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   private isInBlockedList(url: string) {
+    const regex = /\/auth(\/)?$/;
     // console.log(url, url.indexOf('/auth'), url.indexOf('/refresh-token'));
-    if (url.indexOf('/auth') >= 0 || url.indexOf('/refresh-token') >= 0)
-      return true;
+    if (regex.test(url) || url.indexOf('/refresh-token') >= 0) return true;
     return false;
   }
 }
