@@ -58,6 +58,13 @@ export const PagesRoutes: Route[] = [
             (m) => m.PublisherIndexComponent
           ),
       },
+      {
+        path: 'video',
+        loadComponent: () =>
+          import('./video/video-index/video-index.component').then(
+            (m) => m.VideoIndexComponent
+          ),
+      },
     ],
   },
   {

@@ -4,13 +4,13 @@
 
 
   <div nz-row nzGutter="20">
-    <div nz-col nzSm="10" nzXs="24" class="text-right">Hình ảnh</div>
+    <div nz-col nzSm="10" nzXs="24" class="text-right">{{ label }}</div>
     <div nz-col nzSm="14" nzXs="24">
       <div>
-        <div *ngIf="defaultValue['image']" class="mb1">
-          <img style="max-height: 100px" src="{{uploadContentImageUrl}}{{defaultValue['image']}}" alt="">
+        <div *ngIf="defaultValue[defaultField]" class="mb1">
+          <img style="max-height: 100px" src="{{uploadContentImageUrl}}{{defaultValue[defaultField]}}" alt="">
         </div>
-        <input type="file" (change)="fileChangeEvent($event)" />
+        <input nz-input type="file" (change)="fileChangeEvent($event)" accept=".png,.jpg,.jpeg,.gif" />
         <button  *ngIf="croppedImage" nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelMetaImage()">Hủy</button>
 
       </div>
@@ -20,7 +20,7 @@
             <image-cropper
               [imageChangedEvent]="imageChangedEvent"
               [maintainAspectRatio]="true"
-              [aspectRatio]="5 / 3"
+              [aspectRatio]="aspectRatio"
               format="png"
               (imageCropped)="imageCropped($event)"
               (imageLoaded)="imageLoaded($event)"

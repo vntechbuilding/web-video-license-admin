@@ -7,7 +7,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+} from '@angular/forms';
 import { FormErrorType } from './form-base';
 
 export const InputComponentBaseInput = [
@@ -32,7 +37,7 @@ export declare type validatorsType = {
 @Component({
   template: '',
 })
-export abstract class InputComponentBase {
+export abstract class InputComponentBase implements ControlValueAccessor {
   @Input({ required: true }) public formGroup!: FormGroup;
   @Input({ required: true }) public formErrors: { [key: string]: string } = {};
   @Input() defaultValue: defaultValueType = {};

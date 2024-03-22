@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="userId" nzShowSearch>
+        <ng-container *ngIf="user$ | async; let user">
+          <nz-option *ngFor="let userItem of user.data" [nzValue]="userItem.id" [nzLabel]="userItem.fullName + ' ' + userItem.email + ' ' + userItem.phone"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

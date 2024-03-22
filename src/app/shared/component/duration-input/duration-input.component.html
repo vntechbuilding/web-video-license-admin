@@ -1,0 +1,34 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzFor]="durationField">{{ label }}</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors[durationField]">
+
+
+      <form [formGroup]="form">
+        <div nz-row nzGutter="15">
+          <div nz-col nzSpan="8">
+
+            <nz-input-number-group nzAddOnBefore="Giờ">
+              <nz-input-number formControlName="hours" [nzStep]="1" [nzMin]="0" [nzMax]="23"></nz-input-number>
+            </nz-input-number-group>
+          </div>
+          <div nz-col nzSpan="8">
+
+            <nz-input-number-group nzAddOnBefore="Phút">
+              <nz-input-number formControlName="minutes" [nzStep]="1" [nzMin]="0" [nzMax]="59"></nz-input-number>
+            </nz-input-number-group>
+          </div>
+          <div nz-col nzSpan="8">
+
+            <nz-input-number-group nzAddOnBefore="Giây">
+              <nz-input-number formControlName="seconds" [nzStep]="1" [nzMin]="0" [nzMax]="59"></nz-input-number>
+            </nz-input-number-group>
+          </div>
+        </div>
+      </form>
+
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

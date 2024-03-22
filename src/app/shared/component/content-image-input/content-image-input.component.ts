@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -53,7 +53,11 @@ export class ContentImageInputComponent
   extends InputComponentBase
   implements OnInit
 {
-  public uploadContentImageUrl = environment.uploadContentImageThumbnailUrl;
+  @Input('uploadContentImageUrl') uploadContentImageUrl: string =
+    environment.uploadContentImageThumbnailUrl;
+  @Input('label') label: string = 'Hình ảnh';
+  @Input('defaultField') defaultField: string = 'image';
+  @Input('aspectRatio') aspectRatio = 5 / 3;
   constructor(private sanitizer: DomSanitizer) {
     super();
   }
@@ -61,13 +65,16 @@ export class ContentImageInputComponent
   metaImageDimensions!: imageDimensions;
   ngOnInit() {
     this.reader.onloadend = () => {
-      this.formGroup.get('image')?.setValue(this.reader.result);
+      this.formGroup.get(this.defaultField)?.setValue(this.reader.result);
       this.metaImage = this.reader.result as string;
       GetImageDimensions(this.metaImage).then(
         (dimensions) => (this.metaImageDimensions = dimensions)
       );
     };
-    this.addControl('image', this.setValidators(this.validators['image'], []));
+    this.addControl(
+      this.defaultField,
+      this.setValidators(this.validators[this.defaultField], [])
+    );
   }
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -96,6 +103,6 @@ export class ContentImageInputComponent
     this.croppedImage = null;
     this.metaImageDimensions = null as any;
     this.metaImage = '';
-    this.formGroup.get('image')?.setValue('');
+    this.formGroup.get(this.defaultField)?.setValue('');
   }
 }

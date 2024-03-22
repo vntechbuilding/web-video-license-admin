@@ -1,0 +1,49 @@
+<div class="mb-2">
+  <app-user-domain-filter [domainInput]="false" (filter)="filterData($event)"></app-user-domain-filter>
+</div>
+<ng-container *ngIf="video$ | async as videoData">
+
+  <nz-table #publisherTable nzSize="small" [nzData]="videoData.data" nzShowPagination="true" [nzTotal]="videoData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+    <thead>
+    <tr>
+
+      <th>Thời gian khởi tạo</th>
+      <th>Thời gian Tải lên</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Video</th>
+      <th>Duration</th>
+      <th>Lượt xem</th>
+      <th>User</th>
+      <th>Xử lý</th>
+    </tr>
+    <tr>
+      <th colspan="9" class="center-align">
+        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo publisher">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </button>
+      </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of publisherTable.data">
+      <td>{{data.createdAt | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{data.uploadDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.description}}</td>
+      <td>
+        <a href="{{videoUploadPath}}{{data.file}}" target="_blank">
+          <img style="height: 50px" src="{{imageUploadPath}}{{data.thumbnail}}" alt="">
+        </a>
+      </td>
+      <td>{{data.duration}}</td>
+      <td>{{data.totalWatch}}</td>
+      <td>{{data.user?.fullName}}</td>
+      <td>
+        <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(data)">Sửa</button>
+        <button nz-button nzDanger nzType="primary" nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(data)">Xóa</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</ng-container>

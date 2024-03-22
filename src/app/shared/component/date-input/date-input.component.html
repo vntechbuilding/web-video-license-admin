@@ -1,0 +1,14 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzFor]="dateField">{{ label }}</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors[dateField]">
+
+      <nz-date-picker
+        nzShowTime
+        nzFormat="dd/MM/yyyy HH:mm:ss"
+        [formControlName]="dateField"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

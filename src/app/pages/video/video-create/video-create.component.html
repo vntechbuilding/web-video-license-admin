@@ -1,0 +1,51 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="name">Tên video</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['name']">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="description">Mô tả</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['description']">
+      <input nz-input formControlName="description" id="description" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="videoFile">File mp4</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['videoFile']">
+      <input type="file" nz-input formControlName="videoFile" (change)="onFileChange($event)" accept=".mp4">
+    </nz-form-control>
+  </nz-form-item>
+
+  <app-content-image-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [label]="'Thumbnail'" [defaultField]="'thumbnail'" [aspectRatio]="16/9"></app-content-image-input>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="totalWatch">Lượt xem</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['totalWatch']">
+      <nz-input-number formControlName="totalWatch" [nzMin]="0" [nzStep]="999999"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+
+<!--  <nz-form-item>-->
+<!--    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>-->
+<!--    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">-->
+<!--      <nz-select formControlName="userId" nzShowSearch>-->
+<!--        <ng-container *ngIf="user$ | async; let user">-->
+<!--          <nz-option *ngFor="let userItem of user.data" [nzValue]="userItem.id" [nzLabel]="userItem.fullName + ' ' + userItem.email + ' ' + userItem.phone"></nz-option>-->
+<!--        </ng-container>-->
+<!--      </nz-select>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+  <app-user-id-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [defaultValue]="{}"></app-user-id-input>
+  <app-date-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Ngày tải lên" dateField="uploadDate"  [defaultValue]="{}"></app-date-input>
+  <app-duration-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Thời lượng video" durationField="duration" [defaultValue]="{}"></app-duration-input>
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Tạo Video</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
