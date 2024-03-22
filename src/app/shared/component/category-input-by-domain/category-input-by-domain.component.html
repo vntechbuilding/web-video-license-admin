@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="categoryId">Danh mục</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['categoryId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="categoryId" nzShowSearch>
+        <ng-container *ngIf="category$ | async; let categoryData">
+          <nz-option *ngFor="let category of categoryData" [nzValue]="category.id" [nzLabel]="category.title"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

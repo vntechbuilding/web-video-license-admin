@@ -2430,10 +2430,10 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-1.1.0.tgz#8b840305a6b48e8764803435ec0c716fa27d3802"
   integrity sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==
 
-"@vntechbuilding/custom-ckeditor@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@vntechbuilding/custom-ckeditor/0.0.6/85622c2f60a3bce126c903afbbc798d5efda459b#85622c2f60a3bce126c903afbbc798d5efda459b"
-  integrity sha512-6gTrqmVic+jjrPXBzrfwYd4no6U1YiKghqpizw9K/igupWXvXLYCSNBKyDydYJuQgkIf4eO1AI7yy+hhOiA3ZQ==
+"@vntechbuilding/custom-ckeditor@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@vntechbuilding/custom-ckeditor/0.0.7/9ba94164aa851d0f66a0162ee8a43dafc3fc240b#9ba94164aa851d0f66a0162ee8a43dafc3fc240b"
+  integrity sha512-LJ4pGgAnaXi/q7VlaCzFfxI855Gk+fxApp8rElcsjNpLJ1ZjFwAVLiR4BY/XkKzSGKp+ZxnFWFxH31oyW5hu7A==
   dependencies:
     "@ckeditor/ckeditor5-alignment" "41.2.1"
     "@ckeditor/ckeditor5-autoformat" "41.2.1"
@@ -4209,6 +4209,11 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4, 
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ==
+
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
@@ -5318,6 +5323,14 @@ ng-zorro-antd@^17.3.0:
     date-fns "^2.16.1"
     tslib "^2.3.0"
 
+ngx-clipboard@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-clipboard/-/ngx-clipboard-16.0.0.tgz#bb97584d33e8009420b8d7f83b185f68ca06869f"
+  integrity sha512-rZ/Eo1PqiKMiyF8tdjhmUkoUu68f7OzBJ7YH1YFeh2RAaNrerTaW8XfFOzppSckjFQqA1fwGSYuTTJlDhDag5w==
+  dependencies:
+    ngx-window-token ">=7.0.0"
+    tslib "^2.0.0"
+
 ngx-image-cropper@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-7.2.1.tgz#bf1864fc1512516c9a27a80db88ee66c47031b34"
@@ -5329,6 +5342,13 @@ ngx-webstorage@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/ngx-webstorage/-/ngx-webstorage-13.0.1.tgz#04de259104167a339aa59575c2c3b64983ca47f2"
   integrity sha512-CyKAqhIAmJQbdeIK1lqQZ7uSoVLPFV0StyjkANn96I36HN/RKtNw9+l7fQTfmavnZpmZ9ctffcpsXRHPzSZvlw==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-window-token@>=7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-window-token/-/ngx-window-token-7.0.0.tgz#2e1bc76846411a388188b802154e4841d3e27856"
+  integrity sha512-5+XfRVSY7Dciu8xyCNMkOlH2UfwR9W2P1Pirz7caaZgOZDjFbL8aEO2stjfJJm2FFf1D6dlVHNzhLWGk9HGkqA==
   dependencies:
     tslib "^2.0.0"
 

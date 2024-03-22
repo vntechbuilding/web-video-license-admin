@@ -55,16 +55,24 @@ export abstract class InputComponentBase implements ControlValueAccessor {
     }
   }
 
-  addControl(name: string, validator: ValidatorFn | ValidatorFn[]) {
+  addControl(
+    name: string,
+    validator: ValidatorFn | ValidatorFn[],
+    defaultValue: any = '',
+    defaultNull: boolean = false
+  ) {
     const control = this.formGroup.get(name);
     if (control) {
       control.setValidators(validator);
     } else {
       this.formGroup.addControl(
         name,
-        new FormControl(this.defaultValue[name] || '', {
-          validators: validator,
-        })
+        new FormControl(
+          defaultNull ? null : this.defaultValue[name] || defaultValue,
+          {
+            validators: validator,
+          }
+        )
       );
     }
   }

@@ -18,7 +18,7 @@ import { ModalContentBase } from '../../../shared/base/modal-content-base';
 import { UserService } from '../../user/user.service';
 import { NewsCategory, NewsCategoryService } from '../news-category.service';
 import { DomainService } from '../../domain/domain.service';
-import { map, of, Subject, Subscription, switchMap, tap } from 'rxjs';
+import { map, of, ReplaySubject, Subscription, switchMap, tap } from 'rxjs';
 import { FlattenCategories } from '../../../shared/utils/flatten-categories';
 import { HeadMetaInputComponent } from '../../../shared/component/head-meta-input/head-meta-input.component';
 import { FullnameInputComponent } from '../../../shared/component/fullname-input/fullname-input.component';
@@ -62,7 +62,7 @@ export class NewsCategoryEditComponent
     .pipe(
       tap(() => this.loadDomain$.next(this.nzModalData.domain?.userId || ''))
     );
-  loadDomain$ = new Subject<string>();
+  loadDomain$ = new ReplaySubject<string>();
   domain$ = this.loadDomain$
     .pipe(
       switchMap((userId) => {
@@ -75,7 +75,7 @@ export class NewsCategoryEditComponent
     )
     .pipe(tap(() => this.loadCategory$.next(this.nzModalData.domainId || '')));
 
-  loadCategory$ = new Subject<string>();
+  loadCategory$ = new ReplaySubject<string>();
   category$ = this.loadCategory$.pipe(
     switchMap((domainId) => {
       if (!domainId) {
@@ -102,11 +102,18 @@ export class NewsCategoryEditComponent
     ).valueChanges.subscribe((domainId: string) =>
       this.loadCategory$.next(domainId)
     );
+    if (this.defaultValue['domainId']) {
+      this.loadCategory$.next(this.defaultValue['domainId']);
+    }
     this.userSub = (
       this.validateForm.get('userId') as AbstractControl
     )?.valueChanges.subscribe((userId: string) =>
       this.loadDomain$.next(userId)
     );
+
+    if (this.defaultValue['userId']) {
+      this.loadDomain$.next(this.defaultValue['userId']);
+    }
   }
   override ngOnDestroy() {
     if (this.domainSub) this.domainSub.unsubscribe();

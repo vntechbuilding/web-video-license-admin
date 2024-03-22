@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="domainId">Domain</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['domainId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="domainId" nzShowSearch>
+        <ng-container *ngIf="domain$ | async; let domainData">
+          <nz-option *ngFor="let domain of domainData" [nzValue]="domain.id" [nzLabel]="domain.domain"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

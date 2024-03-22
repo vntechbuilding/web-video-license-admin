@@ -1,0 +1,52 @@
+<div class="mb-2">
+  <app-user-domain-news-category-filter (filter)="filterData($event)"></app-user-domain-news-category-filter>
+</div>
+
+<ng-container *ngIf="news$ | async as newsData">
+
+  <nz-table #newsTable nzSize="small" [nzData]="newsData.data" nzShowPagination="true" [nzTotal]="newsData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+    <thead>
+    <tr>
+
+      <th>Thời gian khởi tạo</th>
+      <th>Thời gian Tải lên</th>
+      <th>Tin tức</th>
+      <th>Danh mục</th>
+      <th>Video</th>
+      <th>Image</th>
+      <th>Domain</th>
+      <th>Xử lý</th>
+    </tr>
+    <tr>
+      <th colspan="8" class="center-align">
+        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo tin tức">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </button>
+      </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of newsTable.data">
+      <td>{{data.createdAt | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{data.uploadDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+      <td>{{data.title}}</td>
+      <td>{{data.category?.title}}</td>
+      <td>
+        <a *ngIf="data.video" href="{{videoUploadPath}}{{data.video.file}}" target="_blank">
+          <img style="height: 50px" src="{{imageUploadPath}}{{data.video.thumbnail}}" alt="">
+        </a>
+      </td>
+      <td>
+        <img style="height: 50px" *ngIf="data.image" src="{{imageUploadPath + data.image}}" alt="">
+      </td>
+      <td>
+        <ng-container *ngIf="data.domain">{{data.url | domainUrl:data.domain}}</ng-container>
+      </td>
+      <td>
+        <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(data)">Sửa</button>
+        <button nz-button nzDanger nzType="primary" nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(data)">Xóa</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</ng-container>

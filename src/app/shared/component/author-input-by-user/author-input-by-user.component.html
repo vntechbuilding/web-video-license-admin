@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="authorId">Tác giả</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['authorId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="authorId" nzShowSearch>
+        <ng-container *ngIf="author$ | async; let authorData">
+          <nz-option *ngFor="let author of authorData.data" [nzValue]="author.id" [nzLabel]="author.name + ' - ' + author.description"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

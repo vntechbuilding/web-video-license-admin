@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="publisherId">Nhà xuất bản</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['publisherId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="publisherId" nzShowSearch>
+        <ng-container *ngIf="publisher$ | async; let publisherData">
+          <nz-option *ngFor="let publisher of publisherData.data" [nzValue]="publisher.id" [nzLabel]="publisher.name + ' - ' + publisher.description"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

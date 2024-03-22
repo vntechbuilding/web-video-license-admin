@@ -65,6 +65,13 @@ export const PagesRoutes: Route[] = [
             (m) => m.VideoIndexComponent
           ),
       },
+      {
+        path: 'news',
+        loadComponent: () =>
+          import('./news/news-index/news-index.component').then(
+            (m) => m.NewsIndexComponent
+          ),
+      },
     ],
   },
   {

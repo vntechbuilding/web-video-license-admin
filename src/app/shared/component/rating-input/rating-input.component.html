@@ -1,0 +1,33 @@
+<div [formGroup]="formGroup">
+
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['ratingValue']&&formErrorMsg['ratingValue']['required']" nzFor="ratingValue">Điểm đánh giá (Rating)</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['ratingValue']">
+      <nz-input-number formControlName="ratingValue" [nzMin]="0" [nzMax]="5"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['bestRating']&&formErrorMsg['bestRating']['required']" nzFor="bestRating">Điểm cao nhất (Rating)</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['bestRating']">
+      <nz-input-number formControlName="bestRating" [nzMin]="0" [nzMax]="5"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['ratingCount']&&formErrorMsg['ratingCount']['required']" nzFor="ratingCount">Tổng số lần đánh giá</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['ratingCount']">
+      <nz-input-number formControlName="ratingCount" [nzMin]="0" [nzMax]="9999999"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['totalRead']&&formErrorMsg['totalRead']['required']" nzFor="totalRead">Tổng lượt xem bài</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['totalRead']">
+      <nz-input-number formControlName="totalRead" [nzMin]="0" [nzMax]="9999999"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

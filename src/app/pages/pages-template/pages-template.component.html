@@ -16,8 +16,13 @@
       <li nz-submenu nzOpen nzTitle="Tin tức" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/news']">
+              Tin tức
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['/news-category']">
-              Danh mục bài viết
+              Danh mục tin tức
             </a>
           </li>
 

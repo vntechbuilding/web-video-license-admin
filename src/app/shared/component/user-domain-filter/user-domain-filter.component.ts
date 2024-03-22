@@ -9,7 +9,7 @@ import {
 import { FormBase } from '../../base/form-base';
 import { UserService } from '../../../pages/user/user.service';
 import { DomainService } from '../../../pages/domain/domain.service';
-import { debounceTime, of, Subject, Subscription, switchMap } from 'rxjs';
+import { debounceTime, of, ReplaySubject, Subscription, switchMap } from 'rxjs';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -44,7 +44,7 @@ export class UserDomainFilterComponent
     super();
   }
   user$ = this.user.getAllUser(1000);
-  loadDomain$ = new Subject<string>();
+  loadDomain$ = new ReplaySubject<string>();
   domain$ = this.loadDomain$.pipe(
     switchMap((userId) => {
       this.validateForm.get('domainId')?.setValue('');
@@ -71,6 +71,10 @@ export class UserDomainFilterComponent
         lastValue = value;
         this.filter.next(value);
       });
+
+    if (this.defaultValue['userId']) {
+      this.loadDomain$.next(this.defaultValue['userId']);
+    }
   }
 
   override ngOnDestroy() {

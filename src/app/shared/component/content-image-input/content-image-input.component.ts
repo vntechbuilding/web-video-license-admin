@@ -73,7 +73,9 @@ export class ContentImageInputComponent
     };
     this.addControl(
       this.defaultField,
-      this.setValidators(this.validators[this.defaultField], [])
+      this.setValidators(this.validators[this.defaultField], []),
+      '',
+      true
     );
   }
   imageChangedEvent: any = '';

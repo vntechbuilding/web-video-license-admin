@@ -76,7 +76,9 @@ export class HeadMetaInputComponent
     );
     this.addControl(
       'metaImage',
-      this.setValidators(this.validators['metaImage'], [])
+      this.setValidators(this.validators['metaImage'], []),
+      '',
+      true
     );
     this.emitNewErrorMsg('metaTitle');
     this.emitNewErrorMsg('metaDescription');

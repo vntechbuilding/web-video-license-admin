@@ -1,0 +1,20 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="videoId">Video dùng trong bài viết</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['videoId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="videoId" nzShowSearch>
+        <ng-container *ngIf="video$ | async; let videoData">
+          <nz-option *ngFor="let video of videoData.data" [nzValue]="video.id" [nzLabel]="video.name + ' - ' + video.description"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <div *ngIf="videoSelected" nz-row nzGutter="20" class="mb-2">
+    <div nz-col class="text-right" [nzSm]="10" [nzXs]="24">
+      Đường dẫn video
+    </div>
+    <div nz-col [nzSm]="14" [nzXs]="24">
+        {{videoUploadPath}}{{videoSelected.file}} <button [disabled]="isCopy" class="ml-2" nzSize="small" nzType="primary" nz-button ngxClipboard [cbContent]="videoUploadPath + videoSelected.file" (cbOnSuccess)="copied($event)">{{!isCopy?'Copy':'Copied'}}</button>
+    </div>
+  </div>
+</div>

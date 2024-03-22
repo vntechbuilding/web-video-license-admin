@@ -1,0 +1,11 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="3" [nzXs]="24" [nzFor]="field">{{ label }}</nz-form-label>
+    <nz-form-control [nzSm]="21" [nzXs]="24" [nzErrorTip]="formErrors[field]">
+
+      <ckeditor [editor]="Editor" [formControlName]="field"></ckeditor>
+
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

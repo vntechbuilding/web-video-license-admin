@@ -1,0 +1,39 @@
+<form nz-form [formGroup]="validateForm">
+  <div nz-row nzGutter="20">
+    <div nz-col nzSpan="8">
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">
+          <nz-select formControlName="userId" nzShowSearch nzAllowClear>
+            <ng-container *ngIf="user$ | async; let user">
+              <nz-option *ngFor="let userItem of user.data" [nzValue]="userItem.id" [nzLabel]="userItem.fullName + ' ' + userItem.email + ' ' + userItem.phone"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="domainId">Domain</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['domainId']">
+          <nz-select formControlName="domainId" nzShowSearch nzAllowClear>
+            <ng-container *ngIf="domain$ | async; let domain">
+              <nz-option *ngFor="let domainItem of domain" [nzValue]="domainItem.id" [nzLabel]="domainItem.domain"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item></div>
+    <div nz-col nzSpan="8">
+      <nz-form-item>
+        <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="domainId">Danh mục</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['categoryId']">
+          <nz-select formControlName="categoryId" nzShowSearch nzAllowClear>
+            <ng-container *ngIf="newsCategory$ | async; let newsCategory">
+              <nz-option *ngFor="let category of newsCategory" [nzValue]="category.id" [nzLabel]="category.title"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item></div>
+  </div>
+
+</form>

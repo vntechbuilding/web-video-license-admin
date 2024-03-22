@@ -16,7 +16,7 @@ import { FormBase } from '../../../shared/base/form-base';
 import { ModalContentBase } from '../../../shared/base/modal-content-base';
 import { UserService } from '../../user/user.service';
 import { NewsCategory, NewsCategoryService } from '../news-category.service';
-import { map, of, Subject, Subscription, switchMap } from 'rxjs';
+import { map, of, ReplaySubject, Subscription, switchMap } from 'rxjs';
 import { DomainService } from '../../domain/domain.service';
 import { NewsCategoryOptionComponent } from '../../../shared/component/news-category-option/news-category-option.component';
 import { FlattenCategories } from '../../../shared/utils/flatten-categories';
@@ -54,7 +54,7 @@ export class NewsCategoryCreateComponent
     super();
   }
   user$ = this.user.getAllUser(1000);
-  loadDomain$ = new Subject<string>();
+  loadDomain$ = new ReplaySubject<string>();
   domain$ = this.loadDomain$.pipe(
     switchMap((userId) => {
       if (!userId) return of([]);
@@ -62,7 +62,7 @@ export class NewsCategoryCreateComponent
     })
   );
 
-  loadCategory$ = new Subject<string>();
+  loadCategory$ = new ReplaySubject<string>();
   category$ = this.loadCategory$.pipe(
     switchMap((domainId) => {
       if (!domainId) {
@@ -88,11 +88,17 @@ export class NewsCategoryCreateComponent
     ).valueChanges.subscribe((domainId: string) =>
       this.loadCategory$.next(domainId)
     );
+    if (this.defaultValue['domainId']) {
+      this.loadCategory$.next(this.defaultValue['domainId']);
+    }
     this.userSub = (
       this.validateForm.get('userId') as AbstractControl
     )?.valueChanges.subscribe((userId: string) =>
       this.loadDomain$.next(userId)
     );
+    if (this.defaultValue['userId']) {
+      this.loadDomain$.next(this.defaultValue['userId']);
+    }
   }
   override ngOnDestroy() {
     if (this.domainSub) this.domainSub.unsubscribe();
