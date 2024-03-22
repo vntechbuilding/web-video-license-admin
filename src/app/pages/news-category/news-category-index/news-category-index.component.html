@@ -1,3 +1,6 @@
+<div class="mb-2">
+  <app-user-domain-filter (filter)="filter($event)"></app-user-domain-filter>
+</div>
 <ng-container *ngIf="category$ | async as categoryData">
 
   <div class="text-center mb2">
@@ -31,22 +34,30 @@
 <ng-template #nodeOption let-newsCategory="newsCategory">
   {{newsCategory.name}}
   &nbsp; - &nbsp;
-  ID: {{newsCategory.id}}
-  &nbsp; - &nbsp;
-  Left: {{newsCategory.left}}
-  &nbsp; - &nbsp;
-  Right: {{newsCategory.right}}
-  &nbsp; - &nbsp;
-  Root: {{newsCategory.rootId}}
-  &nbsp; - &nbsp;
+  <ng-container *ngIf="newsCategory.metaImage">
+    <img style="height: 30px" src="{{uploadMetaImageUrl}}{{newsCategory.metaImage}}" alt="">
+    &nbsp; - &nbsp;
+  </ng-container>
+  <ng-container *ngIf="newsCategory.image">
+    <img style="height: 30px" src="{{uploadContentImageUrl}}{{newsCategory.image}}" alt="">
+    &nbsp; - &nbsp;
+  </ng-container>
+<!--  ID: {{newsCategory.id}}-->
+<!--  &nbsp; - &nbsp;-->
+<!--  Root: {{newsCategory.rootId}}-->
+<!--  &nbsp; - &nbsp;-->
 
   <nz-switch [ngModel]="newsCategory.disabled" nzSize="small" (ngModelChange)="changeDisabled(newsCategory, !newsCategory.disabled)"></nz-switch>
   &nbsp; - &nbsp;
-  <a href="{{newsCategory.domain.domain}}" target="_blank" title="{{newsCategory.description}}">
+  <a href="{{newsCategory.domain.domain}}/{{newsCategory.url}}" target="_blank" title="{{newsCategory.metaDescription}}">
     {{newsCategory.domain.domain}}/{{newsCategory.url}}
   </a>
   &nbsp; - &nbsp;
   <button nz-button nzType="primary"  nzSize="small" (click)="update(newsCategory)">Cập nhật</button>
   &nbsp; - &nbsp;
   <button nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(newsCategory)">Xóa thư mục</button>
+  &nbsp; - &nbsp;
+  <b class="text-primary">{{newsCategory.left}}</b>
+  &nbsp; - &nbsp;
+  <b class="text-success">{{newsCategory.right}}</b>
     </ng-template>

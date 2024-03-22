@@ -6,12 +6,10 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="description">Meta description</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['description']">
-      <input nz-input formControlName="description" id="description" />
-    </nz-form-control>
-  </nz-form-item>
+
+
+  <app-head-meta-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-head-meta-input>
+  <app-content-image-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-content-image-input>
 
   <nz-form-item>
     <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>

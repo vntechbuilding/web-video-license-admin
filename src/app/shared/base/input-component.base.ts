@@ -45,6 +45,7 @@ export abstract class InputComponentBase {
     if (this._formErrorMsg != value && value) {
       this._formErrorMsg = value;
       this.formErrorMsgChange.next(value);
+      this.formErrorMsgChange.next(value);
       // this.changeDetectorRef.detectChanges();
     }
   }

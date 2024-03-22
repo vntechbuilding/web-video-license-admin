@@ -20,6 +20,10 @@ import { NewsCategory, NewsCategoryService } from '../news-category.service';
 import { DomainService } from '../../domain/domain.service';
 import { map, of, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { FlattenCategories } from '../../../shared/utils/flatten-categories';
+import { HeadMetaInputComponent } from '../../../shared/component/head-meta-input/head-meta-input.component';
+import { FullnameInputComponent } from '../../../shared/component/fullname-input/fullname-input.component';
+import { PhoneEmailInputComponent } from '../../../shared/component/phone-email-input/phone-email-input.component';
+import { ContentImageInputComponent } from '../../../shared/component/content-image-input/content-image-input.component';
 
 @Component({
   selector: 'app-news-category-edit',
@@ -34,6 +38,10 @@ import { FlattenCategories } from '../../../shared/utils/flatten-categories';
     NzSelectModule,
     CommonModule,
     NewsCategoryOptionComponent,
+    HeadMetaInputComponent,
+    FullnameInputComponent,
+    PhoneEmailInputComponent,
+    ContentImageInputComponent,
   ],
   templateUrl: './news-category-edit.component.html',
   styleUrl: './news-category-edit.component.scss',
@@ -86,7 +94,6 @@ export class NewsCategoryEditComponent
     this.validateForm = this.fb.group({
       domainId: [this.nzModalData.domainId, [Validators.required]],
       userId: [this.nzModalData.domain?.userId, [Validators.required]],
-      description: [this.nzModalData.description, [Validators.required]],
       title: [this.nzModalData.title, [Validators.required]],
       parentId: [this.nzModalData.parentId],
     });
@@ -113,9 +120,6 @@ export class NewsCategoryEditComponent
     },
     userId: {
       required: 'User không được để trống',
-    },
-    description: {
-      required: 'Mô tả không được để trống',
     },
     title: {
       required: 'Tiêu đề không được để trống',

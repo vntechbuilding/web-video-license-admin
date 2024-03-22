@@ -21,6 +21,12 @@ import { DomainCreateComponent } from '../../domain/domain-create/domain-create.
 import { NewsCategoryCreateComponent } from '../news-category-create/news-category-create.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NewsCategoryEditComponent } from '../news-category-edit/news-category-edit.component';
+import { pick } from 'lodash';
+import { environment } from '../../../../environments/environment';
+import {
+  UserDomainFilter,
+  UserDomainFilterComponent,
+} from '../../../shared/component/user-domain-filter/user-domain-filter.component';
 interface FlatNode {
   expandable: boolean;
   name: string;
@@ -44,11 +50,14 @@ interface FlatNode {
     NzTooltipDirective,
     NzTreeViewModule,
     NzPopconfirmModule,
+    UserDomainFilterComponent,
   ],
   templateUrl: './news-category-index.component.html',
   styleUrl: './news-category-index.component.scss',
 })
 export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
+  public uploadMetaImageUrl = environment.uploadMetaImageThumbnailUrl;
+  public uploadContentImageUrl = environment.uploadContentImageThumbnailUrl;
   constructor(private newsCategory: NewsCategoryService) {
     super();
   }
@@ -56,7 +65,17 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
 
   category$ = this.loadDataSubject$
     .pipe(startWith(true))
-    .pipe(switchMap(() => this.newsCategory.allCategories()))
+    .pipe(
+      switchMap(() => {
+        if (this.filterData?.domainId) {
+          return this.newsCategory.allDomainCategory(this.filterData.domainId);
+        } else if (this.filterData?.userId) {
+          return this.newsCategory.allUserCategory(this.filterData.userId);
+        } else {
+          return this.newsCategory.allCategories();
+        }
+      })
+    )
     .pipe(
       tap((category) => {
         this.dataSource.setData(category);
@@ -64,7 +83,25 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
       })
     );
 
-  changeDisabled(data: NewsCategory, disabled: boolean) {}
+  changeDisabled(data: NewsCategory, disabled: boolean) {
+    this.newsCategory
+      .updateCategory({
+        ...pick(
+          data,
+          'domainId',
+          'image',
+          'metaDescription',
+          'metaTitle',
+          'parentId',
+          'rootId',
+          'summary',
+          'title'
+        ),
+        disabled,
+        categoryId: data.id,
+      })
+      .subscribe(() => this.loadDataSubject$.next(true));
+  }
 
   private transformer = (node: NewsCategory, level: number): FlatNode => ({
     ...node,
@@ -103,6 +140,7 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
     const modal = this.createComponentModal(
       {
         nzTitle: 'Tạo danh mục',
+        nzWidth: '100vw',
       },
       NewsCategoryCreateComponent
     );
@@ -126,6 +164,7 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
     >(
       {
         nzTitle: 'Cập nhật danh mục ' + newsCategory.title,
+        nzWidth: '100vw',
       },
       NewsCategoryEditComponent,
       newsCategory
@@ -133,5 +172,10 @@ export class NewsCategoryIndexComponent extends Mixin(ModalBase) {
     modal.afterClose.subscribe(() => {
       this.loadDataSubject$.next(true);
     });
+  }
+  filterData!: UserDomainFilter;
+  filter($event: UserDomainFilter) {
+    this.filterData = $event;
+    this.loadDataSubject$.next(true);
   }
 }

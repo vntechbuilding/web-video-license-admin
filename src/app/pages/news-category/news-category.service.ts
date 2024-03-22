@@ -4,7 +4,9 @@ import { environment } from '../../../environments/environment';
 import { domain } from '../domain/domain.service';
 export declare type NewsCategory = {
   id: string;
-  description: string | null;
+  metaDescription: string | null;
+  metaTitle: string | null;
+  metaImage: string | null;
   summary: string | null;
   image: string | null;
   title: string;
@@ -31,7 +33,13 @@ export class NewsCategoryService {
 
   allDomainCategory(domainId: string) {
     return this.http.get<NewsCategory[]>(
-      environment.apiUrl + `news-category/${domainId}`
+      environment.apiUrl + `news-category/domain/${domainId}`
+    );
+  }
+
+  allUserCategory(userId: string) {
+    return this.http.get<NewsCategory[]>(
+      environment.apiUrl + `news-category/user/${userId}`
     );
   }
 

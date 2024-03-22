@@ -20,6 +20,8 @@ import { map, of, Subject, Subscription, switchMap } from 'rxjs';
 import { DomainService } from '../../domain/domain.service';
 import { NewsCategoryOptionComponent } from '../../../shared/component/news-category-option/news-category-option.component';
 import { FlattenCategories } from '../../../shared/utils/flatten-categories';
+import { HeadMetaInputComponent } from '../../../shared/component/head-meta-input/head-meta-input.component';
+import { ContentImageInputComponent } from '../../../shared/component/content-image-input/content-image-input.component';
 
 @Component({
   selector: 'app-news-category-create',
@@ -34,6 +36,8 @@ import { FlattenCategories } from '../../../shared/utils/flatten-categories';
     NzSelectModule,
     CommonModule,
     NewsCategoryOptionComponent,
+    HeadMetaInputComponent,
+    ContentImageInputComponent,
   ],
   templateUrl: './news-category-create.component.html',
   styleUrl: './news-category-create.component.scss',
@@ -76,7 +80,6 @@ export class NewsCategoryCreateComponent
     this.validateForm = this.fb.group({
       domainId: ['', [Validators.required]],
       userId: ['', [Validators.required]],
-      description: ['', [Validators.required]],
       title: ['', [Validators.required]],
       parentId: [''],
     });
@@ -103,9 +106,6 @@ export class NewsCategoryCreateComponent
     },
     userId: {
       required: 'User không được để trống',
-    },
-    description: {
-      required: 'Mô tả không được để trống',
     },
     title: {
       required: 'Tiêu đề không được để trống',

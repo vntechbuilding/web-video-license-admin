@@ -1,0 +1,53 @@
+<div [formGroup]="formGroup">
+
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['metaTitle']&&formErrorMsg['metaTitle']['required']" nzFor="metaTitle">Meta title</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['metaTitle']">
+      <input nz-input formControlName="metaTitle" id="metaTitle" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" [nzRequired]="formErrorMsg['metaDescription']&&formErrorMsg['metaDescription']['required']" nzFor="metaDescription">Meta description</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['metaDescription']">
+      <input nz-input formControlName="metaDescription" id="metaDescription" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <div nz-row nzGutter="20">
+    <div nz-col nzSm="10" nzXs="24" class="text-right">Meta image</div>
+    <div nz-col nzSm="14" nzXs="24">
+      <div>
+        <div *ngIf="defaultValue['metaImage']" class="mb1">
+          <img style="max-height: 100px" src="{{uploadMetaImageUrl}}{{defaultValue['metaImage']}}" alt="">
+        </div>
+        <input type="file" (change)="fileChangeEvent($event)" />
+        <button  *ngIf="croppedImage" nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelMetaImage()">Hủy</button>
+
+      </div>
+      <div class="crop-wrapper mb1 mt1">
+        <div nz-row nzGutter="20">
+          <div nz-col nzSpan="7">
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="16 / 9"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            ></image-cropper></div>
+          <div *ngIf="croppedImage" nz-col nzSpan="14">
+            <div *ngIf="metaImageDimensions">Width: {{metaImageDimensions.width}}px / Height: {{metaImageDimensions.height}}px</div>
+            <img [src]="croppedImage" />
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
