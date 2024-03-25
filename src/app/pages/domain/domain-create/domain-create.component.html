@@ -6,6 +6,12 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="https">Https</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['https']">
+      <nz-switch nzSize="small" formControlName="https"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="userId">User</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['userId']">
       <nz-select formControlName="userId" nzShowSearch>

@@ -1,0 +1,29 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="title">Tiêu đề</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['title']">
+      <input nz-input formControlName="title" id="title" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <app-date-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Ngày tải lên" dateField="uploadDate"  [defaultValue]="{}"></app-date-input>
+  <app-content-image-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [label]="'Hình ảnh'" [defaultValue]="defaultValue" [defaultField]="'image'" [aspectRatio]="16/9" [uploadContentImageUrl]="uploadContentImageUrl"></app-content-image-input>
+
+  <app-head-meta-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-head-meta-input>
+  <app-rating-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-rating-input>
+  <app-user-id-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-user-id-input>
+  <app-domain-input-by-user [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-domain-input-by-user>
+  <app-disabled-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Khóa bài viết"></app-disabled-input>
+  <app-video-input-by-user [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [allowClear]="true"></app-video-input-by-user>
+  <app-author-input-by-user [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [allowClear]="true"></app-author-input-by-user>
+  <app-publisher-input-by-user [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [allowClear]="true"></app-publisher-input-by-user>
+  <app-input-text-area [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Mô tả" field="summary"></app-input-text-area>
+  <app-input-ckeditor [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Nội dung" field="content"></app-input-ckeditor>
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Tạo Trang</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

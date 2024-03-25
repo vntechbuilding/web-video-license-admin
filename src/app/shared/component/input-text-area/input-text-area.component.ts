@@ -13,6 +13,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { InputComponentBase } from '../../base/input-component.base';
 import { Subscription } from 'rxjs';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { unescape } from 'lodash';
 
 @Component({
   selector: 'app-input-text-area',
@@ -41,7 +42,8 @@ export class InputTextAreaComponent
     this.addControl(
       this.field,
       this.validators[this.field],
-      this.defaultValue[this.field]
+      unescape(this.defaultValue[this.field]),
+      false
     );
     this.contentSubscription = this.formGroup
       .get(this.field)

@@ -49,8 +49,8 @@
 
   <nz-switch [ngModel]="newsCategory.disabled" nzSize="small" (ngModelChange)="changeDisabled(newsCategory, !newsCategory.disabled)"></nz-switch>
   &nbsp; - &nbsp;
-  <a href="{{newsCategory.domain.domain}}/{{newsCategory.url}}" target="_blank" title="{{newsCategory.metaDescription}}">
-    {{newsCategory.domain.domain}}/{{newsCategory.url}}
+  <a href="{{newsCategory.url | domainUrl:newsCategory.domain}}" target="_blank" title="{{newsCategory.metaDescription}}">
+    {{newsCategory.url}}
   </a>
   &nbsp; - &nbsp;
   <button nz-button nzType="primary"  nzSize="small" (click)="update(newsCategory)">Cập nhật</button>

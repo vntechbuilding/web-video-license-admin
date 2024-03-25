@@ -6,12 +6,13 @@
 
       <th>Thời gian khởi tạo</th>
       <th>Domain</th>
+      <th>Https</th>
       <th>User</th>
       <th>Disabled</th>
       <th>Xử lý</th>
     </tr>
     <tr>
-      <th colspan="5" class="center-align">
+      <th colspan="6" class="center-align">
         <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo domain">
           <span nz-icon nzType="plus" nzTheme="outline"></span>
         </button>
@@ -21,6 +22,9 @@
     <tr *ngFor="let data of domainTable.data">
       <td>{{data.createdAt | date:'dd/MM/yyyy'}}</td>
       <td>{{data.domain}}</td>
+      <td>
+        <nz-switch [ngModel]="data.https" (ngModelChange)="changeHttps(data, !data.https)"></nz-switch>
+      </td>
       <td>{{data.user?.fullName}}</td>
       <td>
         <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>

@@ -20,9 +20,9 @@
     <div nz-col nzSm="14" nzXs="24">
       <div>
         <div *ngIf="defaultValue['metaImage']" class="mb1">
-          <img style="max-height: 100px" src="{{uploadMetaImageUrl}}{{defaultValue['metaImage']}}" alt="">
+          <img style="max-height: 100px" src="{{uploadMetaImageUrl}}{{defaultValue['metaImage']}}" alt="" >
         </div>
-        <input type="file" (change)="fileChangeEvent($event)" />
+        <input type="file" (change)="fileChangeEvent($event)" accept=".png,.jpg,.jpeg,.gif" />
         <button  *ngIf="croppedImage" nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelMetaImage()">Hủy</button>
 
       </div>

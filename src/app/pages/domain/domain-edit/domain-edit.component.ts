@@ -12,6 +12,7 @@ import { FormBase } from '../../../shared/base/form-base';
 import { ModalContentBase } from '../../../shared/base/modal-content-base';
 import { UserService } from '../../user/user.service';
 import { DomainService, domain } from '../domain.service';
+import { NzSwitchComponent } from 'ng-zorro-antd/switch';
 
 @Component({
   selector: 'app-domain-edit',
@@ -25,6 +26,7 @@ import { DomainService, domain } from '../domain.service';
     DisabledInputComponent,
     NzSelectModule,
     CommonModule,
+    NzSwitchComponent,
   ],
   templateUrl: './domain-edit.component.html',
   styleUrl: './domain-edit.component.scss',
@@ -40,14 +42,16 @@ export class DomainEditComponent
   ngOnInit() {
     this.validateForm = this.fb.group({
       domain: [
-        {
-          value: this.nzModalData.domain,
-          disabled: true,
-        },
+        // {
+        //   value: this.nzModalData.domain,
+        //   disabled: true,
+        // },
+        this.nzModalData.domain,
         [Validators.required],
       ],
       userId: [this.nzModalData.userId, [Validators.required]],
       disabled: [this.nzModalData.disabled],
+      https: [this.nzModalData.https],
     });
   }
 

@@ -46,7 +46,11 @@ export class DateInputComponent
   @Input('label') label: string = 'Ngày';
   dateSubscription!: Subscription;
   ngOnInit() {
-    this.addControl(this.dateField, this.validators[this.dateField]);
+    this.addControl(
+      this.dateField,
+      this.validators[this.dateField],
+      this.defaultValue[this.dateField]
+    );
     this.dateSubscription = this.formGroup
       .get(this.dateField)
       ?.valueChanges.subscribe((value) =>

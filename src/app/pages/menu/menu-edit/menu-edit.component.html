@@ -1,0 +1,54 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="text">Menu</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['text']">
+      <input nz-input formControlName="text" id="text" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="title">Tiêu đề</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['title']">
+      <input nz-input formControlName="title" id="title" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="url">Url</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['url']">
+      <input nz-input formControlName="url" id="url" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="sortOrder">Thứ tự</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['sortOrder']">
+      <nz-input-number formControlName="sortOrder" [nzMin]="0" [nzMax]="999999"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+
+
+  <app-user-id-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-user-id-input>
+  <app-domain-input-by-user [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" (domainId)="updateDomainId($event)" [formErrors]="formErrors"></app-domain-input-by-user>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="parentId">Menu mục cha</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['parentId']">
+      <nz-select formControlName="parentId" nzShowSearch nzAllowClear>
+        <ng-container *ngIf="menu$ | async; let menuData">
+
+          <nz-option *ngFor="let menuItem of menuData" [nzValue]="menuItem.id" [nzLabel]="menuItem.text"></nz-option>
+
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật menu</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

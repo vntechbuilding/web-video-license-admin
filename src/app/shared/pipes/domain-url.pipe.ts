@@ -6,7 +6,7 @@ import { CreateUrl } from '../utils/create-url';
   standalone: true,
 })
 export class DomainUrlPipe implements PipeTransform {
-  transform(url: string, domain: any): string {
+  transform(url: string, domain: domain): string {
     if (domain) return CreateUrl(domain, url);
     else return url;
   }

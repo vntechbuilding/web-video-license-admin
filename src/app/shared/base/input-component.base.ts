@@ -61,6 +61,7 @@ export abstract class InputComponentBase implements ControlValueAccessor {
     defaultValue: any = '',
     defaultNull: boolean = false
   ) {
+    // console.log(defaultValue);
     const control = this.formGroup.get(name);
     if (control) {
       control.setValidators(validator);

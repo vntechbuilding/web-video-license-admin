@@ -2,7 +2,7 @@
   <nz-form-item>
     <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="amount">Số tiền</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['amount']">
-      <nz-input-number formControlName="amount" [nzMin]="1" [nzStep]="10"></nz-input-number>
+      <nz-input-number formControlName="amount" [nzMin]="1" [nzMax]="10"></nz-input-number>
     </nz-form-control>
   </nz-form-item>
 </div>

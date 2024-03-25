@@ -27,6 +27,7 @@ import {
   UserDomainFilter,
   UserDomainFilterComponent,
 } from '../../../shared/component/user-domain-filter/user-domain-filter.component';
+import { DomainUrlPipe } from '../../../shared/pipes/domain-url.pipe';
 interface FlatNode {
   expandable: boolean;
   name: string;
@@ -51,6 +52,7 @@ interface FlatNode {
     NzTreeViewModule,
     NzPopconfirmModule,
     UserDomainFilterComponent,
+    DomainUrlPipe,
   ],
   templateUrl: './news-category-index.component.html',
   styleUrl: './news-category-index.component.scss',

@@ -8,12 +8,12 @@
     <div class="sidebar-logo">
       <a href="#" target="_blank">
         <img src="/assets/logo.png" alt="logo">
-        <h1>LionGame</h1>
+        <h1>PAGES</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
 
-      <li nz-submenu nzOpen nzTitle="Tin tức" nzIcon="ordered-list">
+      <li nz-submenu nzOpen nzTitle="Nội dung trang" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['/news']">
@@ -23,6 +23,11 @@
           <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['/news-category']">
               Danh mục tin tức
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/page']">
+              Trang
             </a>
           </li>
 
@@ -40,6 +45,11 @@
           <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['/publisher']">
               Publisher
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/menu']">
+              Menu
             </a>
           </li>
         </ul>

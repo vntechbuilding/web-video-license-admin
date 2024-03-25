@@ -72,6 +72,20 @@ export const PagesRoutes: Route[] = [
             (m) => m.NewsIndexComponent
           ),
       },
+      {
+        path: 'page',
+        loadComponent: () =>
+          import('./page/page-index/page-index.component').then(
+            (m) => m.PageIndexComponent
+          ),
+      },
+      {
+        path: 'menu',
+        loadComponent: () =>
+          import('./menu/menu-index/menu-index.component').then(
+            (m) => m.MenuIndexComponent
+          ),
+      },
     ],
   },
   {

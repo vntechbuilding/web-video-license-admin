@@ -12,6 +12,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { DisabledInputComponent } from '../../../shared/component/disabled-input/disabled-input.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CommonModule } from '@angular/common';
+import { NzSwitchComponent } from 'ng-zorro-antd/switch';
 
 @Component({
   selector: 'app-domain-create',
@@ -25,6 +26,7 @@ import { CommonModule } from '@angular/common';
     DisabledInputComponent,
     NzSelectModule,
     CommonModule,
+    NzSwitchComponent,
   ],
   templateUrl: './domain-create.component.html',
   styleUrl: './domain-create.component.scss',
@@ -40,6 +42,7 @@ export class DomainCreateComponent
   ngOnInit() {
     this.validateForm = this.fb.group({
       domain: ['', [Validators.required]],
+      https: [true, [Validators.required]],
       userId: ['', [Validators.required]],
     });
   }

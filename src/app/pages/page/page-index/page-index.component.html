@@ -1,17 +1,15 @@
 <div class="mb-2">
-  <app-user-domain-news-category-filter (filter)="filterData($event)"></app-user-domain-news-category-filter>
+  <app-user-domain-filter (filter)="filter($event)"></app-user-domain-filter>
 </div>
+<ng-container *ngIf="page$ | async as pageData">
 
-<ng-container *ngIf="news$ | async as newsData">
-
-  <nz-table #newsTable nzSize="small" [nzData]="newsData.data" nzShowPagination="true" [nzTotal]="newsData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+  <nz-table #pageTable nzSize="small" [nzData]="pageData.data" nzShowPagination="true" [nzTotal]="pageData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
     <thead>
     <tr>
 
       <th>Thời gian khởi tạo</th>
       <th>Thời gian Tải lên</th>
-      <th>Tin tức</th>
-      <th>Danh mục</th>
+      <th>Trang</th>
       <th>Video</th>
       <th>Image</th>
       <th>Domain</th>
@@ -19,17 +17,16 @@
     </tr>
     <tr>
       <th colspan="8" class="center-align">
-        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo tin tức">
+        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo trang">
           <span nz-icon nzType="plus" nzTheme="outline"></span>
         </button>
       </th>
     </thead>
     <tbody>
-    <tr *ngFor="let data of newsTable.data">
+    <tr *ngFor="let data of pageTable.data">
       <td>{{data.createdAt | date:'dd/MM/yyyy hh:mm'}}</td>
       <td>{{data.uploadDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
       <td>{{data.title}}</td>
-      <td>{{data.category?.title}}</td>
       <td>
         <a *ngIf="data.video" href="{{videoUploadPath}}{{data.video.file}}" target="_blank">
           <img style="height: 50px" src="{{imageUploadPath}}{{data.video.thumbnail}}" alt="">

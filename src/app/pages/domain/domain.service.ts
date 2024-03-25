@@ -5,6 +5,7 @@ import { user } from '../user/user.service';
 export declare type domain = {
   id: string;
   domain: string;
+  https: boolean;
   createdAt: Date;
   disabled: boolean;
   userId: string;

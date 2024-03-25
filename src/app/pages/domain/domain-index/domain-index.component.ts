@@ -12,6 +12,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { FormsModule } from '@angular/forms';
 import { omit } from 'lodash';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-domain-index',
@@ -23,6 +24,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzSwitchModule,
     FormsModule,
     NzToolTipModule,
+    NzIconModule,
   ],
   templateUrl: './domain-index.component.html',
   styleUrl: './domain-index.component.scss',
@@ -74,6 +76,14 @@ export class DomainIndexComponent extends Mixin(
       .updateDomain({
         ...omit(data, 'user'),
         disabled,
+      })
+      .subscribe(() => this.loadDataSubject$.next(true));
+  }
+  changeHttps(domain: domain, https: boolean) {
+    return this.domainService
+      .updateDomain({
+        ...omit(domain, 'user'),
+        https,
       })
       .subscribe(() => this.loadDataSubject$.next(true));
   }

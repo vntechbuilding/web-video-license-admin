@@ -1,0 +1,44 @@
+<div class="mb-2">
+  <app-user-domain-filter (filter)="filter($event)"></app-user-domain-filter>
+</div>
+<ng-container *ngIf="menu$ | async as menuData">
+
+
+  <div class="text-center mb2">
+    <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo menu">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
+  <nz-tree-view [nzTreeControl]="treeControl" [nzDataSource]="dataSource">
+    <nz-tree-node *nzTreeNodeDef="let node" nzTreeNodeIndentLine>
+      <nz-tree-node-toggle nzTreeNodeNoopToggle >
+        <span nz-icon nzType="file" nzTheme="outline"></span>
+      </nz-tree-node-toggle>
+      <nz-tree-node-option *ngTemplateOutlet="nodeOption; context: {menu: node}">
+      </nz-tree-node-option>
+    </nz-tree-node>
+
+    <nz-tree-node *nzTreeNodeDef="let node; when: hasChild" nzTreeNodeIndentLine>
+      <nz-tree-node-toggle>
+          <span
+            nz-icon
+            [nzType]="treeControl.isExpanded(node) ? 'minus-square' : 'plus-square'"
+            nzTheme="outline"
+          ></span>
+      </nz-tree-node-toggle>
+      <nz-tree-node-option *ngTemplateOutlet="nodeOption; context: {menu: node}">
+      </nz-tree-node-option>
+    </nz-tree-node>
+  </nz-tree-view>
+
+</ng-container>
+
+<ng-template #nodeOption let-menu="menu">
+  <a href="{{menu.url | domainUrl:menu.domain}}" target="_blank" title="{{menu.title}}">
+    {{menu.text}} / {{menu.sortOrder}}
+  </a>
+  &nbsp; - &nbsp;
+  <button nz-button nzType="primary"  nzSize="small" (click)="edit(menu)">Cập nhật</button>
+  &nbsp; - &nbsp;
+  <button nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(menu)">Xóa menu</button>
+</ng-template>
