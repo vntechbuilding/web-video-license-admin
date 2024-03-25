@@ -86,6 +86,13 @@ export const PagesRoutes: Route[] = [
             (m) => m.MenuIndexComponent
           ),
       },
+      {
+        path: 'template',
+        loadComponent: () =>
+          import('./template/template-index/template-index.component').then(
+            (m) => m.TemplateIndexComponent
+          ),
+      },
     ],
   },
   {

@@ -1,0 +1,49 @@
+
+<ng-container *ngIf="template$ | async as templateData">
+
+  <nz-table #templateTable nzSize="small" [nzData]="templateData.data" nzShowPagination="true" [nzTotal]="templateData.count" (nzPageIndexChange)="changePage($event)" [nzPageIndex]="pageIndex + 1" [nzPageSize]="pageSize" nzFrontPagination="false">
+    <thead>
+    <tr>
+
+      <th>Thời gian khởi tạo</th>
+      <th>Cập nhật</th>
+      <th>Giao diện</th>
+      <th>Version</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Hình ảnh</th>
+      <th>Disabled</th>
+      <th>Xử lý</th>
+    </tr>
+    <tr>
+      <th colspan="9" class="center-align">
+        <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo publisher">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </button>
+      </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of templateTable.data">
+      <td>{{data.createdAt | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{data.updatedAt | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.version}}</td>
+      <td>{{data.code}}</td>
+      <td>{{data.description}}</td>
+      <td>
+        <a href="{{autoImagePath + data.image}}" target="_blank">
+          <img [src]="autoImagePath + data.image" alt="image" style="width: 50px"></a>
+      <td>
+
+        <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>
+      </td>
+      <td>
+        <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(data)">Sửa</button>
+        <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="updateZip(data)">update Zip</button>
+        <button nz-button nzDanger nzType="primary" nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(data)">Xóa</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+</ng-container>

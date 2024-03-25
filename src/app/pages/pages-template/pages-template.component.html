@@ -55,6 +55,21 @@
         </ul>
       </li>
 
+      <li nz-submenu nzOpen nzTitle="Giao diện" nzIcon="file-image">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/template-data']">
+              Cấu hình giao diện
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/template']">
+              Danh sách giao diện
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <li nz-submenu nzOpen nzTitle="Quản lý tài khoản" nzIcon="usergroup-add">
         <ul>
           <li nz-menu-item nzMatchRouter>

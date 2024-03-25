@@ -8,7 +8,9 @@
     <div nz-col nzSm="14" nzXs="24">
       <div>
         <div *ngIf="defaultValue[defaultField]" class="mb1">
-          <img style="max-height: 100px" src="{{uploadContentImageUrl}}{{defaultValue[defaultField]}}" alt="">
+          <a href="{{uploadContentImageUrl}}{{defaultValue[defaultField]}}" target="_blank">
+            <img style="max-height: 100px" src="{{uploadContentImageUrl}}{{defaultValue[defaultField]}}" alt="">
+          </a>
         </div>
         <input nz-input type="file" (change)="fileChangeEvent($event)" accept=".png,.jpg,.jpeg,.gif" />
         <button  *ngIf="croppedImage" nz-button nzType="primary" nzDanger nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelMetaImage()">Hủy</button>

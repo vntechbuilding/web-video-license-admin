@@ -11,4 +11,5 @@ export const environment = {
   uploadMetaImageThumbnailUrl: 'http://localhost:3000/images/16x9/thumbnail/',
   uploadContentImageThumbnailUrl: 'http://localhost:3000/images/5x3/thumbnail/',
   videoUploadPath: 'http://localhost:3000/videos/',
+  autoImagePath: 'http://localhost:3000/images/auto/',
 };

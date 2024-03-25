@@ -10,4 +10,5 @@ export const environment = {
   uploadMetaImageThumbnailUrl: '/images/16x9/thumbnail/',
   uploadContentImageThumbnailUrl: '/images/5x3/thumbnail/',
   videoUploadPath: '/videos/',
+  autoImagePath: '/images/auto/',
 };

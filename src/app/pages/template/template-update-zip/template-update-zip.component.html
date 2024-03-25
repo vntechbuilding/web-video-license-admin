@@ -1,0 +1,15 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="zipFile">File Zip</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['zipFile']">
+      <input type="file" nz-input formControlName="zipFile" (change)="onFileChange($event)" accept=".zip">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật Zip file</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

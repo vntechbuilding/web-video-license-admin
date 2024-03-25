@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { Mixin } from 'ts-mixer';
+import { Component, OnInit } from '@angular/core';
 import { ModalBase } from '../../shared/base/modal-base';
-
-import Editor from '@vntechbuilding/custom-ckeditor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CKEditorModule],
+  imports: [],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent extends Mixin(ModalBase) {
-  public Editor = Editor.Editor;
-  constructor() {
-    super();
+export class DashboardComponent implements OnInit {
+  constructor(private router: Router) {}
+  ngOnInit() {
+    this.router.navigate(['/domain']).then();
   }
 }
