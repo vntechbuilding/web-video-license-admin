@@ -93,6 +93,13 @@ export const PagesRoutes: Route[] = [
             (m) => m.TemplateIndexComponent
           ),
       },
+      {
+        path: 'template-data',
+        loadComponent: () =>
+          import(
+            './template-data/template-data-index/template-data-index.component'
+          ).then((m) => m.TemplateDataIndexComponent),
+      },
     ],
   },
   {

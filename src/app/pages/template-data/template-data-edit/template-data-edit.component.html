@@ -1,0 +1,69 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="template">Giao diện</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['template']">
+      <input nz-input formControlName="template" id="template" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="name">Dữ liệu</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['name']">
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['code']">
+      <input nz-input formControlName="code" id="code" />
+    </nz-form-control>
+  </nz-form-item>
+
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24"  nzRequired nzFor="templateType">Trang cấu hình</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['templateType']">
+      <nz-select formControlName="templateType" nzShowSearch>
+        <nz-option *ngFor="let type of templateType" [nzValue]="type" [nzLabel]="type"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" nzRequired [nzXs]="24" nzFor="dataType">Loại dữ liệu</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['dataType']">
+      <nz-select formControlName="dataType" nzShowSearch>
+        <nz-option *ngFor="let type of dataType" [nzValue]="type" [nzLabel]="type"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSm]="10" [nzXs]="24" nzFor="config">Config</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['config']">
+      <textarea rows="10" nz-input formControlName="config" id="config"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="sortOrder">Thứ tự</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['sortOrder']">
+      <nz-input-number formControlName="sortOrder" [nzMin]="0" [nzMax]="999999"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+
+
+
+
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật dữ liệu giao diện</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

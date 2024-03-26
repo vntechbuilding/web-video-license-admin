@@ -1,0 +1,43 @@
+<div class="mb-2">
+  <app-template-id-filter (filter)="filterData($event)"></app-template-id-filter>
+</div>
+<ng-container *ngIf="templateData$ | async; let templateData">
+
+  <div class="text-center mb-2">
+    <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo publisher">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
+  <div *ngFor="let item of ObjectEntriesData">
+    <div class="mb-3">
+      <h3>{{item[0]}}</h3>
+      <nz-table [nzData]="item[1]" nzSize="small" nzShowPagination="true" nzFrontPagination="false">
+        <thead>
+        <tr>
+          <th>Cấu hình</th>
+          <th>Code</th>
+          <th>Loại giao diện</th>
+          <th>Loại dữ liệu</th>
+          <th>Config</th>
+          <th>Thứ tự</th>
+          <th>Xử lý</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of item[1]">
+            <td>{{data.name }}</td>
+            <td>{{data.code}}</td>
+            <td>{{data.templateType}}</td>
+            <td>{{data.dataType}}</td>
+            <td>{{data.config}}</td>
+            <td>{{data.sortOrder}}</td>
+            <td>
+              <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(data)">Sửa</button>
+              <button nz-button nzDanger nzType="primary" nzSize="small" nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="delete(data)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</ng-container>
