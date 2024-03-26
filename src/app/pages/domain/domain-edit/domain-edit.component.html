@@ -23,6 +23,7 @@
     </nz-form-control>
   </nz-form-item>
 
+  <app-template-id-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors"></app-template-id-input>
   <app-disabled-input [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Khóa domain"></app-disabled-input>
 
 

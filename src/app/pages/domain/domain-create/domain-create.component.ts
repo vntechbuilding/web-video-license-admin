@@ -13,6 +13,7 @@ import { DisabledInputComponent } from '../../../shared/component/disabled-input
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { CommonModule } from '@angular/common';
 import { NzSwitchComponent } from 'ng-zorro-antd/switch';
+import { TemplateIdInputComponent } from '../../../shared/component/template-id-input/template-id-input.component';
 
 @Component({
   selector: 'app-domain-create',
@@ -27,6 +28,7 @@ import { NzSwitchComponent } from 'ng-zorro-antd/switch';
     NzSelectModule,
     CommonModule,
     NzSwitchComponent,
+    TemplateIdInputComponent,
   ],
   templateUrl: './domain-create.component.html',
   styleUrl: './domain-create.component.scss',

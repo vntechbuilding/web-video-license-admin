@@ -13,6 +13,7 @@ import { ModalContentBase } from '../../../shared/base/modal-content-base';
 import { UserService } from '../../user/user.service';
 import { DomainService, domain } from '../domain.service';
 import { NzSwitchComponent } from 'ng-zorro-antd/switch';
+import { TemplateIdInputComponent } from '../../../shared/component/template-id-input/template-id-input.component';
 
 @Component({
   selector: 'app-domain-edit',
@@ -27,6 +28,7 @@ import { NzSwitchComponent } from 'ng-zorro-antd/switch';
     NzSelectModule,
     CommonModule,
     NzSwitchComponent,
+    TemplateIdInputComponent,
   ],
   templateUrl: './domain-edit.component.html',
   styleUrl: './domain-edit.component.scss',

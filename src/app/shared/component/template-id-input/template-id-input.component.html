@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label [nzSm]="10" [nzXs]="24" nzFor="templateId">Giao diện</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['templateId']">
+      <nz-select [nzAllowClear]="allowClear" formControlName="templateId" nzShowSearch>
+        <ng-container *ngIf="template$ | async; let templateData">
+          <nz-option *ngFor="let templateItem of templateData.data" [nzValue]="templateItem.id" [nzLabel]="templateItem.name"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</div>

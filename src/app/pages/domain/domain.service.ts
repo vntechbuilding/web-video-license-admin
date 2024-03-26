@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { user } from '../user/user.service';
+import { template } from '../template/template.service';
 export declare type domain = {
   id: string;
   domain: string;
@@ -10,6 +11,8 @@ export declare type domain = {
   disabled: boolean;
   userId: string;
   user?: user;
+  templateId: string;
+  template?: template;
 };
 export declare type domainGetAll = {
   data: domain[];
