@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { omit } from 'lodash';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { DomainFaviconComponent } from '../domain-favicon/domain-favicon.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-domain-index',
@@ -36,6 +38,7 @@ export class DomainIndexComponent extends Mixin(
   constructor(private domainService: DomainService) {
     super();
   }
+  uploadFaviconUrl = environment.uploadFaviconUrl;
   override pageSize = 20;
   public domains$ = this.createObservableData((perPage, page) =>
     this.domainService.allDomains(perPage, page)
@@ -53,13 +56,26 @@ export class DomainIndexComponent extends Mixin(
     });
   }
 
+  updateDomainFavicon(domain: domain) {
+    const modal = this.createComponentModal<DomainFaviconComponent, domain>(
+      {
+        nzTitle: 'Update Domain Favicon ' + domain.domain,
+        nzWidth: '90vw',
+      },
+      DomainFaviconComponent,
+      domain
+    );
+    modal.afterClose.subscribe((data) => {
+      if (data) this.loadDataSubject$.next(true);
+    });
+  }
   updateDomain(domain: domain) {
     const modal = this.createComponentModal<
       DomainEditComponent,
       { domain: domain }
     >(
       {
-        nzTitle: 'Update Domain',
+        nzTitle: 'Update Domain ' + domain.domain,
       },
       DomainEditComponent,
       {

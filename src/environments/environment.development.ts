@@ -13,4 +13,5 @@ export const environment = {
   videoUploadPath: 'http://localhost:3000/videos/',
   autoImagePath: 'http://localhost:3000/images/auto/',
   uploadTemplateImageUrl: 'http://localhost:3000/images/template/',
+  uploadFaviconUrl: 'http://localhost:3000/favicons/',
 };

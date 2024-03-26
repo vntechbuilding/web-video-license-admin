@@ -1,0 +1,9 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <app-content-image-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [label]="'Favicon'" [defaultValue]="defaultValue" [defaultField]="'favicon'" [aspectRatio]="1" [uploadContentImageUrl]="uploadFaviconUrl"></app-content-image-input>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật Domain Favicon</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

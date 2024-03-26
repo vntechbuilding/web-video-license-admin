@@ -39,7 +39,12 @@ export class DomainService {
   createDomain(createData: any) {
     return this.http.post<domain>(environment.apiUrl + `domain`, createData);
   }
-
+  updateDomainFavicon(updateData: any) {
+    return this.http.patch<domain>(
+      environment.apiUrl + `domain/favicon`,
+      updateData
+    );
+  }
   updateDomain(updateData: any) {
     return this.http.put<domain>(environment.apiUrl + `domain`, updateData);
   }

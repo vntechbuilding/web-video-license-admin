@@ -12,5 +12,6 @@ export const environment = {
   videoUploadPath: '/videos/',
   autoImagePath: '/images/auto/',
   uploadTemplateImageUrl: '/images/template/',
+  uploadFaviconUrl: '/favicons/',
 };
 //updateTemplateImageDir

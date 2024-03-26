@@ -6,6 +6,7 @@
 
       <th>Thời gian khởi tạo</th>
       <th>Domain</th>
+      <th>Favicon</th>
       <th>Template</th>
       <th>Https</th>
       <th>User</th>
@@ -13,7 +14,7 @@
       <th>Xử lý</th>
     </tr>
     <tr>
-      <th colspan="7" class="center-align">
+      <th colspan="8" class="center-align">
         <button nz-button nzType="primary" (click)="create()"  nz-tooltip nzTooltipTitle="Tạo domain">
           <span nz-icon nzType="plus" nzTheme="outline"></span>
         </button>
@@ -23,6 +24,9 @@
     <tr *ngFor="let data of domainTable.data">
       <td>{{data.createdAt | date:'dd/MM/yyyy'}}</td>
       <td>{{data.domain}}</td>
+      <td>
+        <img src="{{uploadFaviconUrl}}{{data.id}}/favicon.ico" alt="">
+      </td>
       <td>{{data.template?.name}}</td>
       <td>
         <nz-switch [ngModel]="data.https" (ngModelChange)="changeHttps(data, !data.https)"></nz-switch>
@@ -32,7 +36,8 @@
         <nz-switch [ngModel]="data.disabled" (ngModelChange)="changeDisabled(data, !data.disabled)"></nz-switch>
       </td>
       <td>
-        <button nz-button nzType="primary" nzSize="small" (click)="editDomain(data)">Sửa</button>
+        <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="editDomain(data)">Sửa</button>
+        <button nz-button nzType="primary" nzSize="small" (click)="updateDomainFavicon(data)">Favicon</button>
       </td>
     </tr>
     </tbody>
