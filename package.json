@@ -24,7 +24,7 @@
     "@ckeditor/ckeditor5-engine": "^41.2.1",
     "@ckeditor/ckeditor5-utils": "^41.2.1",
     "@ckeditor/ckeditor5-watchdog": "^41.2.1",
-    "@vntechbuilding/custom-ckeditor": "0.0.7",
+    "@vntechbuilding/custom-ckeditor": "0.0.9",
     "bootstrap": "^5.3.3",
     "hammerjs": "^2.0.8",
     "lodash": "^4.17.21",
