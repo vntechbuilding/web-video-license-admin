@@ -1,0 +1,69 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <ng-container *ngIf="defaultValue['dataType'] === 'TEXT'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="content">{{ defaultValue['name'] }}</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['content']">
+        <input nz-input formControlName="content"  />
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <ng-container *ngIf="defaultValue['dataType'] === 'SCRIPT'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="content">{{ defaultValue['name'] }}</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['content']">
+        <textarea nz-input rows="20" formControlName="content" ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <ng-container *ngIf="defaultValue['dataType'] === 'CONTENT'">
+    <app-input-ckeditor [validators]="validators" [defaultValue]="defaultValue" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" label="Nội dung" field="content"></app-input-ckeditor>
+  </ng-container>
+  <ng-container *ngIf="defaultValue['dataType'] === 'IMAGE'">
+    <app-content-image-input [validators]="validators" [(formErrorMsg)]="formErrorMsg" [formGroup]="validateForm" [formErrors]="formErrors" [label]="'Hình ảnh'" [defaultValue]="defaultValue" [defaultField]="'content'" [aspectRatio]="defaultValue['config']['width']/defaultValue['config']['height']" [uploadContentImageUrl]="uploadTemplateImageUrl"></app-content-image-input>
+  </ng-container>
+
+  <ng-container *ngIf="defaultValue['dataType'] === 'PAGE'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="refId">{{ defaultValue['name'] }}</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['refId']">
+        <nz-select formControlName="refId" nzShowSearch>
+          <ng-container *ngIf="page$ | async; let pageData">
+            <nz-option *ngFor="let page of pageData.data" [nzValue]="page.id" [nzLabel]="page.title"></nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+
+  <ng-container *ngIf="defaultValue['dataType'] === 'MENU'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="refId">{{ defaultValue['name'] }}</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['refId']">
+        <nz-select formControlName="refId" nzShowSearch>
+          <ng-container *ngIf="menu$ | async; let menuData">
+            <nz-option *ngFor="let menu of menuData" [nzValue]="menu.id" [nzLabel]="menu.text"></nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+
+  <ng-container *ngIf="defaultValue['dataType'] === 'NEWS_CATEGORY'">
+    <nz-form-item>
+      <nz-form-label [nzSm]="10" [nzXs]="24" nzRequired nzFor="refId">{{ defaultValue['name'] }}</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="formErrors['refId']">
+        <nz-select formControlName="refId" nzShowSearch>
+          <ng-container *ngIf="newsCategory$ | async; let newsCategory">
+            <nz-option *ngFor="let category of newsCategory" [nzValue]="category.id" [nzLabel]="category.title"></nz-option>
+          </ng-container>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="12" [nzOffset]="8">
+      <button [disabled]="!validateForm.valid" nz-button nzType="primary">Cập nhật dữ liệu giao diện</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -100,6 +100,20 @@ export const PagesRoutes: Route[] = [
             './template-data/template-data-index/template-data-index.component'
           ).then((m) => m.TemplateDataIndexComponent),
       },
+      {
+        path: 'domain-template',
+        loadComponent: () =>
+          import(
+            './domain-template/domain-template-index/domain-template-index.component'
+          ).then((m) => m.DomainTemplateIndexComponent),
+      },
+      {
+        path: 'domain-template/:domainId',
+        loadComponent: () =>
+          import(
+            './domain-template/domain-template-index/domain-template-index.component'
+          ).then((m) => m.DomainTemplateIndexComponent),
+      },
     ],
   },
   {

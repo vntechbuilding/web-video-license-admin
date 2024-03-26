@@ -69,7 +69,7 @@ export class TemplateDataCreateComponent
           ?.setValue(
             (DefaultConfigDataType[
               value as keyof typeof DefaultConfigDataType
-            ] as string) || '{}'
+            ] as string) || JSON.stringify({})
           );
       }) as Subscription;
   }

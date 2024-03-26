@@ -11,4 +11,6 @@ export const environment = {
   uploadContentImageThumbnailUrl: '/images/5x3/thumbnail/',
   videoUploadPath: '/videos/',
   autoImagePath: '/images/auto/',
+  uploadTemplateImageUrl: '/images/template/',
 };
+//updateTemplateImageDir

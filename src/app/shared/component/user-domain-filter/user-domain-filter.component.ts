@@ -9,7 +9,14 @@ import {
 import { FormBase } from '../../base/form-base';
 import { UserService } from '../../../pages/user/user.service';
 import { DomainService } from '../../../pages/domain/domain.service';
-import { debounceTime, of, ReplaySubject, Subscription, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  of,
+  ReplaySubject,
+  Subscription,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -40,25 +47,47 @@ export class UserDomainFilterComponent
 {
   @Output() filter = new EventEmitter<UserDomainFilter>();
   @Input('domainInput') public domainInput: boolean = true;
+  @Input('domainId') public domainId!: string;
+  @Input('firstUser') public firstUser: boolean = true;
   constructor(private user: UserService, private domain: DomainService) {
     super();
   }
-  user$ = this.user.getAllUser(1000);
+  user$ = this.user.getAllUser(1000).pipe(
+    tap((users) => {
+      if (this.firstUser && users.data.length > 0) {
+        this.validateForm.get('userId')?.setValue(users.data[0]?.id);
+      }
+    })
+  );
   loadDomain$ = new ReplaySubject<string>();
   domain$ = this.loadDomain$.pipe(
     switchMap((userId) => {
-      this.validateForm.get('domainId')?.setValue('');
+      // this.validateForm.get('domainId')?.setValue('');
       if (!userId) {
         return of([]);
       }
-      return this.domain.allUserDomain(userId);
+      return this.domain.allUserDomain(userId).pipe(
+        tap((listDomain) => {
+          const value = this.validateForm.get('domainId')?.value;
+          if (value && !listDomain.find((d) => d.id === value)) {
+            this.validateForm.get('domainId')?.setValue('');
+          } else if (
+            this.domainId &&
+            listDomain.find((d) => d.id === this.domainId)
+          ) {
+            this.validateForm.get('domainId')?.setValue(this.domainId);
+          }
+          this.filter.next(this.validateForm.value);
+        })
+      );
     })
   );
 
   valueSubscription!: Subscription;
   ngOnInit() {
+    // console.log(this.domainId);
     this.validateForm = this.fb.group({
-      domainId: [''],
+      domainId: [this.domainId],
       userId: [''],
     });
     let lastValue: UserDomainFilter;
@@ -71,7 +100,10 @@ export class UserDomainFilterComponent
         lastValue = value;
         this.filter.next(value);
       });
-
+    if (this.domainId) {
+      lastValue = this.validateForm.value;
+      this.filter.next(lastValue);
+    }
     if (this.defaultValue['userId']) {
       this.loadDomain$.next(this.defaultValue['userId']);
     }

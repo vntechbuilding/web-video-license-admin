@@ -16,8 +16,8 @@ export const DefaultConfigDataType: { [key in keyof typeof dataType]: string } =
     SCRIPT: JSON.stringify({}, null, 2),
     IMAGE: JSON.stringify(
       {
-        width: '100',
-        height: '100',
+        width: 100,
+        height: 100,
       },
       null,
       2

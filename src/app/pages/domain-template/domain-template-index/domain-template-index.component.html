@@ -1,0 +1,58 @@
+<div class="mb-2">
+  <app-user-domain-filter [domainInput]="true" [domainId]="domainId" (filter)="filter($event)"></app-user-domain-filter>
+</div>
+<ng-container *ngIf="config$ | async; let configData">
+  <ng-container *ngFor="let configItem of configData">
+    <div class="mb-2">
+      <h3>{{configItem.templateType}}</h3>
+    </div>
+    <div class="mb-3">
+          <nz-table [nzData]="configItem.config" nzSize="small" nzShowPagination="true" nzFrontPagination="false">
+            <thead>
+            <tr>
+              <th>Cấu hình</th>
+              <th>Code</th>
+              <th>Loại dữ liệu</th>
+              <th>Data</th>
+              <th>Xử lý</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let configValue of configItem.config">
+              <td>{{configValue.name }}</td>
+              <td>{{configValue.code}}</td>
+              <td>{{configValue.dataType}}</td>
+              <td>
+                <ng-container *ngIf="configValue.dataType === 'TEXT'">
+                  {{configValue.content}}
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'SCRIPT'">
+                  {{configValue.content}}
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'IMAGE'">
+                  <a href="{{uploadTemplateImageUrl}}{{configValue.content}}" target="_blank">
+                    <img src="{{uploadTemplateImageUrl}}{{configValue.content}}" style="width: 50px" alt="">
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'CONTENT'">
+                  <div [innerHTML]="configValue.content"></div>
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'PAGE'">
+                  {{configValue?.content?.title}}
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'MENU'">
+                  {{configValue?.content?.text}}
+                </ng-container>
+                <ng-container *ngIf="configValue.dataType === 'NEWS_CATEGORY'">
+                  {{configValue?.content?.title}}
+                </ng-container>
+              </td>
+              <td>
+                <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(configValue)">Sửa</button>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+    </div>
+  </ng-container>
+</ng-container>

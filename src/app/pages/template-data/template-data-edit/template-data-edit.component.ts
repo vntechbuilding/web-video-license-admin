@@ -58,7 +58,10 @@ export class TemplateDataEditComponent
       name: [this.nzModalData.name, [Validators.required]],
       dataType: [this.nzModalData.dataType, [Validators.required]],
       code: [this.nzModalData.code, [Validators.required]],
-      config: [this.nzModalData.config, [Validators.required]],
+      config: [
+        JSON.stringify(this.nzModalData.config, null, 2),
+        [Validators.required],
+      ],
       sortOrder: [this.nzModalData.sortOrder, [Validators.required]],
     });
     this.dataTypeSubscription = this.validateForm
@@ -69,7 +72,7 @@ export class TemplateDataEditComponent
           ?.setValue(
             (DefaultConfigDataType[
               value as keyof typeof DefaultConfigDataType
-            ] as string) || '{}'
+            ] as string) || JSON.stringify({})
           );
       }) as Subscription;
   }

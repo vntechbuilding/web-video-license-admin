@@ -29,7 +29,7 @@
             <td>{{data.code}}</td>
             <td>{{data.templateType}}</td>
             <td>{{data.dataType}}</td>
-            <td>{{data.config}}</td>
+            <td>{{data.config | json}}</td>
             <td>{{data.sortOrder}}</td>
             <td>
               <button class="mr1" nz-button nzType="primary" nzSize="small" (click)="edit(data)">Sửa</button>
